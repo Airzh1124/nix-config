@@ -6,6 +6,7 @@
 
     ../../modules/nixos/base.nix
     ../../modules/nixos/desktop/gnome.nix
+    ../../modules/nixos/hardware/asus-rog.nix
     ../../modules/nixos/hardware/nvidia-prime.nix
     ../../modules/nixos/programs/fish.nix
     ../../modules/nixos/services/openssh.nix
