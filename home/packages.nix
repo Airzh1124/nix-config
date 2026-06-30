@@ -9,7 +9,7 @@
     unzip
     p7zip
 
-    btop
+    (btop.override { cudaSupport = true; })
     iotop
     iftop
 
