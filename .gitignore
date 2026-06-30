@@ -1,0 +1,7 @@
+result
+result-*
+*.qcow2
+*.iso
+*.log
+.direnv/
+.envrc
