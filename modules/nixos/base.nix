@@ -29,6 +29,7 @@
     git
     curl
     firefox
+    brightnessctl
   ];
 
   system.stateVersion = "26.05";

@@ -4,7 +4,7 @@
   users.users.han = {
     isNormalUser = true;
     description = "han";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.fish;
   };
 }
