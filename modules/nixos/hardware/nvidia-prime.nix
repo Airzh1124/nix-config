@@ -9,6 +9,7 @@
     modesetting.enable = true;
     open = true;
     nvidiaSettings = true;
+    nvidiaPersistenced = true;
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
