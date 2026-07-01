@@ -2,10 +2,10 @@
 
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelParams = [ "acpi_backlight=native" ];
-  boot.extraModprobeConfig = ''
-    options nvidia NVreg_RegistryDwords=EnableBrightnessControl=1
-  '';
+  # boot.kernelParams = [ "acpi_backlight=native" ];
+  # boot.extraModprobeConfig = ''
+  #   options nvidia NVreg_RegistryDwords=EnableBrightnessControl=1
+  # '';
 
   hardware.graphics.enable = true;
 
