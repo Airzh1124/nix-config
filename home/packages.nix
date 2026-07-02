@@ -17,6 +17,8 @@
     ltrace
     lsof
 
+    fuzzel
+
     cowsay
     file
     which
