@@ -3,6 +3,7 @@
 {
   xdg.configFile = {
     "hypr/hyprland.lua".text = ''
+      require("conf/monitors")
       require("conf/appearance")
       require("conf/options")
       require("conf/gestures")
@@ -47,6 +48,15 @@
           background_color = 0x111111,
         },
 
+      })
+    '';
+
+    "hypr/conf/monitors.lua".text = ''
+      hl.monitor({
+        output = "eDP-1",
+        mode = "2560x1600@240",
+        position = "0x0",
+        scale = 1.60,
       })
     '';
 
