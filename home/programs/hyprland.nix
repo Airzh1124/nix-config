@@ -3,9 +3,21 @@
 {
   xdg.configFile = {
     "hypr/hyprland.lua".text = ''
+      require("conf/appearance")
       require("conf/options")
       require("conf/fcitx5")
+      require("conf/noctalia")
       require("conf/binds")
+    '';
+
+    "hypr/conf/appearance.lua".text = ''
+      hl.config({
+        misc = {
+          disable_hyprland_logo = true,
+          force_default_wallpaper = 0,
+          background_color = 0x111111,
+        },
+      })
     '';
 
     "hypr/conf/options.lua".text = ''
@@ -25,6 +37,11 @@
 
       hl.on("hyprland.start", function()
         hl.exec_cmd("fcitx5 -d")
+      end)
+    '';
+
+    "hypr/conf/noctalia.lua".text = ''
+      hl.on("hyprland.start", function()
         hl.exec_cmd("noctalia")
       end)
     '';
