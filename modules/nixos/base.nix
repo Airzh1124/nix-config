@@ -28,7 +28,6 @@
     wget
     git
     curl
-    firefox
     brightnessctl
   ];
 

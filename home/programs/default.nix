@@ -7,7 +7,9 @@
     ./hyprland.nix
     ./kitty.nix
     ./noctalia.nix
+    ./obsidian.nix
     ./rime.nix
+    ./syncthing.nix
     ./vscode.nix
     ./zen-browser.nix
   ];
