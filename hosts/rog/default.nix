@@ -12,6 +12,7 @@
     ../../modules/nixos/hardware/nvidia.nix
     ../../modules/nixos/programs/fish.nix
     ../../modules/nixos/services/openssh.nix
+    ../../modules/nixos/services/audio.nix
     ../../modules/nixos/system/memory.nix
     ../../users/han
   ];
