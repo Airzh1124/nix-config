@@ -2,12 +2,13 @@
 
 {
   imports = [
+    ./codex.nix
     ./git.nix
     ./hyprland.nix
     ./kitty.nix
-    ./vscode.nix
-    ./codex.nix
+    ./noctalia.nix
     ./rime.nix
+    ./vscode.nix
     ./zen-browser.nix
   ];
 }
