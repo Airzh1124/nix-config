@@ -1,17 +1,12 @@
 { ... }:
 
 {
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 32 * 1024;
-    }
-  ];
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 100;
+  };
 
   services.earlyoom.enable = true;
-
-  nix.settings = {
-    max-jobs = 8;
-    cores = 0;
-  };
 }
