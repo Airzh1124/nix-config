@@ -14,48 +14,31 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
-  # Fix crackling through the mini-jack by disabling analog mic playback
-  # monitoring while keeping PipeWire's capture source available.
-  systemd.services.mute-mic-playback = {
-    description = "Mute ALSA Mic playback to avoid headphone jack crackling";
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "systemd-udev-settle.service" ];
-    after = [
-      "sound.target"
-      "alsa-restore.service"
-      "systemd-udev-settle.service"
-    ];
-
-    serviceConfig.Type = "oneshot";
-    script = ''
-      amixer=${pkgs.alsa-utils}/bin/amixer
-      card=PCH
-
-      for _ in {1..30}; do
-        if "$amixer" -c "$card" scontrols >/dev/null 2>&1; then
-          break
-        fi
-        ${pkgs.coreutils}/bin/sleep 1
-      done
-
-      "$amixer" -c "$card" scontrols >/dev/null
-
-      set_if_present() {
-        local control="$1"
-        shift
-
-        if "$amixer" -c "$card" scontrols | ${pkgs.gnugrep}/bin/grep -Fq "Simple mixer control '$control',"; then
-          "$amixer" -c "$card" -q sset "$control" "$@"
-        fi
-      }
-
-      set_if_present "Mic" 0%
-      set_if_present "Mic" mute
-      set_if_present "Mic Boost" 0%
-    '';
+    wireplumber = {
+      enable = true;
+      extraConfig = {
+        "10-alc285-internal-mic" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                {
+                  "node.name" = "alsa_input.pci-0000_80_1f.3.analog-stereo";
+                  "alsa.mixer_name" = "Realtek ALC285";
+                }
+              ];
+              actions = {
+                update-props = {
+                  "node.description" = "Realtek ALC285 Internal Microphone";
+                  "node.nick" = "Internal Microphone";
+                  "audio.channels" = 1;
+                  "audio.position" = [ "MONO" ];
+                };
+              };
+            }
+          ];
+        };
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [

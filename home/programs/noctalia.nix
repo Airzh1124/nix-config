@@ -6,6 +6,7 @@
   ];
 
   xdg.dataFile = {
+    "avatars/avatar.jpg".source = ../../assets/avatars/avatar.jpg;
     "wallpapers/wallpaper_rog.jpg".source = ../../assets/wallpapers/wallpaper_rog.jpg;
     "wallpapers/wallpaper_nixos.jpg".source = ../../assets/wallpapers/wallpaper_nixos.jpg;
   };
@@ -14,6 +15,8 @@
     enable = true;
 
     settings = {
+      shell.avatar_path = "${config.xdg.dataHome}/avatars/avatar.jpg";
+
       theme = {
         mode = "dark";
         source = "builtin";
@@ -22,6 +25,7 @@
 
       wallpaper = {
         enabled = true;
+        directory = "${config.xdg.dataHome}/wallpapers";
         default.path = "${config.xdg.dataHome}/wallpapers/wallpaper_nixos.jpg";
       };
     };
