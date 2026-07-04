@@ -28,11 +28,15 @@
     gawk
     zstd
     gnupg
+    ripgrep
 
     sysstat
     lm_sensors
     ethtool
     pciutils
     usbutils
+
+    # An extremely fast Python package and project manager, written in Rust.
+    uv
   ];
 }
