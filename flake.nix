@@ -15,13 +15,17 @@
       inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, vicinae, ... }:
     let
       username = "han";
       hostname = "rog";
@@ -41,11 +45,15 @@
 
         modules = [
           ./hosts/rog
+          vicinae.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
+              vicinae.homeManagerModules.default
+            ];
             home-manager.extraSpecialArgs = {
               inherit inputs username hostname pkgs-stable;
             };

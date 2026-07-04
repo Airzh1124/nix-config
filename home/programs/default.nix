@@ -10,6 +10,7 @@
     ./obsidian.nix
     ./rime.nix
     ./syncthing.nix
+    ./vicinae.nix
     ./vscode.nix
     ./zen-browser.nix
   ];

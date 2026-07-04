@@ -22,15 +22,39 @@
   systemd.services.mute-mic-playback = {
     description = "Mute ALSA Mic playback to avoid headphone jack crackling";
     wantedBy = [ "multi-user.target" ];
+    wants = [ "systemd-udev-settle.service" ];
     after = [
       "sound.target"
       "alsa-restore.service"
+      "systemd-udev-settle.service"
     ];
 
     serviceConfig.Type = "oneshot";
     script = ''
-      ${pkgs.alsa-utils}/bin/amixer -q sset "Mic" 0% || true
-      ${pkgs.alsa-utils}/bin/amixer -q sset "Mic" mute || true
+      amixer=${pkgs.alsa-utils}/bin/amixer
+      card=PCH
+
+      for _ in {1..30}; do
+        if "$amixer" -c "$card" scontrols >/dev/null 2>&1; then
+          break
+        fi
+        ${pkgs.coreutils}/bin/sleep 1
+      done
+
+      "$amixer" -c "$card" scontrols >/dev/null
+
+      set_if_present() {
+        local control="$1"
+        shift
+
+        if "$amixer" -c "$card" scontrols | ${pkgs.gnugrep}/bin/grep -Fq "Simple mixer control '$control',"; then
+          "$amixer" -c "$card" -q sset "$control" "$@"
+        fi
+      }
+
+      set_if_present "Mic" 0%
+      set_if_present "Mic" mute
+      set_if_present "Mic Boost" 0%
     '';
   };
 

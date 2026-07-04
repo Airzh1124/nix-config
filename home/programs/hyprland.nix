@@ -10,6 +10,7 @@
       require("conf/rules")
       require("conf/fcitx5")
       require("conf/noctalia")
+      require("conf/vicinae")
       require("conf/binds")
     '';
 
@@ -64,7 +65,7 @@
       return {
         mod = "SUPER",
         terminal = "kitty",
-        launcher = "fuzzel",
+        launcher = "vicinae toggle",
       }
     '';
 
@@ -91,6 +92,23 @@
         blur = true,
         blur_popups = true,
       })
+
+      hl.layer_rule({
+        name = "vicinae-blur",
+        match = {
+          namespace = "vicinae",
+        },
+        blur = true,
+        ignore_alpha = 0,
+      })
+
+      hl.layer_rule({
+        name = "vicinae-no-animation",
+        match = {
+          namespace = "vicinae",
+        },
+        no_anim = true,
+      })
     '';
 
     "hypr/conf/fcitx5.lua".text = ''
@@ -107,6 +125,12 @@
     "hypr/conf/noctalia.lua".text = ''
       hl.on("hyprland.start", function()
         hl.exec_cmd("noctalia")
+      end)
+    '';
+
+    "hypr/conf/vicinae.lua".text = ''
+      hl.on("hyprland.start", function()
+        hl.exec_cmd("vicinae server")
       end)
     '';
 
