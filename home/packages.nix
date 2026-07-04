@@ -38,5 +38,8 @@
 
     # An extremely fast Python package and project manager, written in Rust.
     uv
+
+    # A command-line tool for managing and syncing files to and from cloud storage.
+    rclone
   ];
 }
