@@ -26,6 +26,9 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openconnect
+  ];
 
   time.timeZone = "Asia/Shanghai";
 
@@ -36,6 +39,7 @@
     wget
     git
     curl
+    openconnect
     brightnessctl
   ];
 

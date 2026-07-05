@@ -38,6 +38,16 @@
 
       control_center.width = 900;
 
+      idle = {
+        pre_action_fade_seconds = 2;
+
+        behavior.screen-off = {
+          action = "screen_off";
+          enabled = true;
+          timeout = 600;
+        };
+      };
+
       theme = {
         mode = "dark";
         source = "builtin";
