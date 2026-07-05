@@ -59,6 +59,7 @@
           disable_hyprland_logo = true,
           force_default_wallpaper = 0,
           background_color = 0x111111,
+          focus_on_activate = true,
         },
 
       })
