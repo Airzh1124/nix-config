@@ -16,6 +16,10 @@
 
     settings = {
       shell.avatar_path = "${config.xdg.dataHome}/avatars/avatar.jpg";
+      shell.screenshot = {
+        copy_to_clipboard = true;
+        save_to_file = false;
+      };
 
       theme = {
         mode = "dark";

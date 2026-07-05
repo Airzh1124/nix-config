@@ -4,7 +4,9 @@
   xdg.configFile = {
     "hypr/hyprland.lua".text = ''
       require("conf/monitors")
+      require("conf/cursor")
       require("conf/appearance")
+      require("conf/animations")
       require("conf/options")
       require("conf/gestures")
       require("conf/rules")
@@ -50,6 +52,45 @@
         },
 
       })
+    '';
+
+    "hypr/conf/cursor.lua".text = ''
+      local cursor_theme = "Bibata-Modern-Classic"
+      local cursor_size = "24"
+
+      hl.env("XCURSOR_THEME", cursor_theme)
+      hl.env("XCURSOR_SIZE", cursor_size)
+      hl.env("HYPRCURSOR_SIZE", cursor_size)
+
+      hl.config({
+        cursor = {
+          zoom_factor = 1,
+          zoom_rigid = false,
+          zoom_disable_aa = true,
+          hotspot_padding = 1,
+        },
+      })
+
+      hl.on("hyprland.start", function()
+        hl.exec_cmd("hyprctl setcursor " .. cursor_theme .. " " .. cursor_size)
+      end)
+    '';
+
+    "hypr/conf/animations.lua".text = ''
+      hl.config({
+        animations = {
+          enabled = true,
+        },
+      })
+
+      hl.curve("emphasizedDecel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
+
+      hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "emphasizedDecel", style = "popin 80%" })
+      hl.animation({ leaf = "fadeIn", enabled = true, speed = 3, bezier = "emphasizedDecel" })
+      hl.animation({ leaf = "windowsOut", enabled = true, speed = 2, bezier = "emphasizedDecel", style = "popin 90%" })
+      hl.animation({ leaf = "fadeOut", enabled = true, speed = 2, bezier = "emphasizedDecel" })
+      hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier = "emphasizedDecel", style = "slide" })
+      hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "emphasizedDecel" })
     '';
 
     "hypr/conf/monitors.lua".text = ''
@@ -138,10 +179,12 @@
       local options = require("conf/options")
       local mod = options.mod
       local ipc = "noctalia msg"
+      local screenshot = ipc .. " screenshot-region"
 
       hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(options.terminal))
       hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd(options.launcher))
       hl.bind(mod .. " + S", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
+      hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot))
       hl.bind(mod .. " + COMMA", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
 
       hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume-up"))
