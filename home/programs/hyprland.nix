@@ -21,27 +21,37 @@
 
         -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
         general = {
-          gaps_in = 5,
-          gaps_out = 10,
+          gaps_in = 4,
+          gaps_out = 5,
+          border_size = 1,
+          col = {
+            active_border = "rgba(FFD6E0AA)",
+            inactive_border = "rgba(A58A8D45)",
+          },
+          resize_on_border = true,
+          allow_tearing = true,
         },
 
         decoration = {
-          rounding = 20,
+          rounding = 10,
           rounding_power = 2,
 
           shadow = {
             enabled = true,
-            range = 4,
-            render_power = 3,
-            color = 0xee1a1a1a,
+            range = 50,
+            render_power = 10,
+            color = 0x27000000,
           },
 
           blur = {
             enabled = true,
-            size = 3,
-            passes = 2,
-            vibrancy = 0.1696,
+            size = 10,
+            passes = 3,
+            vibrancy = 0.5,
           },
+
+          dim_inactive = true,
+          dim_strength = 0.05,
         },
 
         -- Disable wallpaper
@@ -51,6 +61,15 @@
           background_color = 0x111111,
         },
 
+      })
+
+      hl.window_rule({
+        match = {
+          pin = true,
+        },
+        border_color = {
+          colors = { "rgba(FFB2BCAA)", "rgba(FFB2BC77)" },
+        },
       })
     '';
 
