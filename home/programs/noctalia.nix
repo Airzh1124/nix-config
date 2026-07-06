@@ -42,7 +42,7 @@
         pre_action_fade_seconds = 2;
 
         behavior.screen-off = {
-          action = "screen_off";
+          action = "lock_and_suspend";
           enabled = true;
           timeout = 600;
         };

@@ -4,11 +4,11 @@
   imports = [
     ./codex.nix
     ./git.nix
-    ./hyprland.nix
+    ./hyprland
     ./kitty.nix
     ./noctalia.nix
     ./obsidian.nix
-    ./rime.nix
+    ./rime
     ./syncthing.nix
     ./vicinae.nix
     ./vscode.nix
