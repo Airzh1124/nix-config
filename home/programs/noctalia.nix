@@ -17,6 +17,7 @@
     settings = {
       shell.avatar_path = "${config.xdg.dataHome}/avatars/avatar.jpg";
       shell.ui_scale = 1.25;
+      shell.clipboard_enabled = false;
       shell.screenshot = {
         copy_to_clipboard = true;
         save_to_file = false;
@@ -28,8 +29,8 @@
           "workspaces"
         ];
         end = [
+          "tray"
           "notifications"
-          "clipboard"
           "battery"
           "session"
         ];
@@ -52,6 +53,8 @@
         mode = "dark";
         source = "builtin";
         builtin = "Catppuccin";
+        wallpaper_scheme = "m3-content";
+        community_palette = "Oxocarbon";
       };
 
       wallpaper = {
