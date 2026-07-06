@@ -3,6 +3,7 @@
 {
   imports = [
     ./codex.nix
+    ./fish.nix
     ./git.nix
     ./hyprland
     ./kitty.nix
@@ -12,6 +13,7 @@
     ./syncthing.nix
     ./vicinae.nix
     ./vscode.nix
+    ./yazi.nix
     ./zen-browser.nix
   ];
 }

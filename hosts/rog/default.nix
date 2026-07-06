@@ -16,9 +16,6 @@
     ../../modules/nixos/hardware/asus-rog.nix
     ../../modules/nixos/hardware/nvidia.nix
 
-    #programs
-    ../../modules/nixos/programs/fish.nix
-
     #services
     ../../modules/nixos/services/audio.nix
     ../../modules/nixos/services/openssh.nix

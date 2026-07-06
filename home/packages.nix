@@ -4,40 +4,59 @@
   # Packages without meaningful Home Manager modules live here.
   # Program-specific configuration belongs in home/programs.
   home.packages = with pkgs; [
-    zip
-    xz
-    unzip
-    p7zip
+    # Desktop applications
+    telegram-desktop
 
-    (btop.override { cudaSupport = true; })
-    iotop
-    iftop
-
-    strace
-    ltrace
-    lsof
-
+    # Everyday CLI utilities
     cowsay
+    fd
     file
-    which
-    tree
-    gnused
-    gnutar
+    fzf
     gawk
-    zstd
-    gnupg
+    gnused
     ripgrep
+    tree
+    which
+    zoxide
 
-    sysstat
+    # Archive and compression tools
+    gnutar
+    p7zip
+    unar
+    unzip
+    xz
+    zip
+    zstd
+
+    # File previews and media metadata, used by tools such as yazi.
+    ffmpegthumbnailer
+    imagemagick
+    poppler-utils
+
+    # Security and crypto tools
+    gnupg
+
+    # System monitoring
+    (btop.override { cudaSupport = true; })
+    iftop
+    iotop
     lm_sensors
+    sysstat
+
+    # Debugging and inspection
+    lsof
+    ltrace
+    strace
+
+    # Hardware and network inspection
     ethtool
     pciutils
     usbutils
 
-    # An extremely fast Python package and project manager, written in Rust.
+    # Development tools
     uv
 
-    # A command-line tool for managing and syncing files to and from cloud storage.
+    # Cloud and file sync tools
     rclone
   ];
 }
