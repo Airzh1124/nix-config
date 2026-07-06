@@ -10,6 +10,7 @@
     ../../modules/nixos/desktop/greetd.nix
     ../../modules/nixos/desktop/hyprland.nix
     ../../modules/nixos/desktop/input.nix
+    ../../modules/nixos/desktop/keyring.nix
 
     #hardware
     ../../modules/nixos/hardware/asus-rog.nix
