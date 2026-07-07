@@ -26,6 +26,9 @@
       };
 
       bar.default = {
+        auto_hide = true;
+        reserve_space = false;
+        # layer = "overlay";
         start = [
           "wallpaper"
           "workspaces"
