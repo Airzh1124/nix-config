@@ -11,6 +11,7 @@
     ../../modules/nixos/desktop/hyprland.nix
     ../../modules/nixos/desktop/input.nix
     ../../modules/nixos/desktop/keyring.nix
+    ../../modules/nixos/desktop/stylix.nix
 
     #hardware
     ../../modules/nixos/hardware/asus-rog.nix

@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vicinae = {
       url = "github:vicinaehq/vicinae";
     };
@@ -25,7 +30,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, vicinae, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, stylix, vicinae, ... }:
     let
       username = "han";
       hostname = "rog";
@@ -45,6 +50,7 @@
 
         modules = [
           ./hosts/rog
+          stylix.nixosModules.stylix
           vicinae.nixosModules.default
 
           home-manager.nixosModules.home-manager

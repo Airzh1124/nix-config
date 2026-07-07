@@ -13,6 +13,8 @@ let
       wrapProgram $out/bin/code \
         --add-flags "--password-store=gnome-libsecret"
     '';
+
+    meta.mainProgram = "code";
   };
 in
 {
@@ -25,5 +27,4 @@ in
   # argvSettings = {
   #   "password-store" = "gnome-libsecret";
   # };
-  
 }

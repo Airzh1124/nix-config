@@ -5,6 +5,8 @@
     inputs.noctalia.homeModules.default
   ];
 
+  stylix.targets.noctalia.enable = false;
+
   xdg.dataFile = {
     "avatars/avatar.jpg".source = ../../assets/avatars/avatar.jpg;
     "wallpapers/wallpaper_rog.jpg".source = ../../assets/wallpapers/wallpaper_rog.jpg;

@@ -5,6 +5,7 @@
   # Program-specific configuration belongs in home/programs.
   home.packages = with pkgs; [
     # Desktop applications
+    papers
     telegram-desktop
 
     # Everyday CLI utilities
