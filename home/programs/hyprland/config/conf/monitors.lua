@@ -1,3 +1,4 @@
+-- Internal ROG panel: native 2560x1600 high-refresh mode with comfortable scaling.
 hl.monitor({
   output = "eDP-1",
   mode = "2560x1600@240",

@@ -1,6 +1,7 @@
 hl.config({
 
   -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+  -- General layout choices: compact gaps, thin borders, and border resizing.
   general = {
     gaps_in = 4,
     gaps_out = 5,
@@ -13,6 +14,7 @@ hl.config({
     allow_tearing = true,
   },
 
+  -- Window decoration stays subtle: rounded corners, soft shadow, blur, and dimming.
   decoration = {
     rounding = 10,
     rounding_power = 2,
@@ -35,7 +37,7 @@ hl.config({
     dim_strength = 0.05,
   },
 
-  -- Disable wallpaper
+  -- Disable the built-in wallpaper and allow apps to focus themselves when needed.
   misc = {
     disable_hyprland_logo = true,
     force_default_wallpaper = 0,
@@ -46,6 +48,7 @@ hl.config({
 
 })
 
+-- Pinned windows get a distinct border so they remain visible across workspaces.
 hl.window_rule({
   match = {
     pin = true,

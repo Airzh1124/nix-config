@@ -13,6 +13,7 @@ hl.layer_rule({
   blur_popups = true,
 })
 
+-- Blur Vicinae surfaces so launcher UI matches the rest of the shell.
 hl.layer_rule({
   name = "vicinae-blur",
   match = {
@@ -22,10 +23,23 @@ hl.layer_rule({
   ignore_alpha = 0,
 })
 
+-- Disable Vicinae layer animations because the launcher handles its own motion.
 hl.layer_rule({
   name = "vicinae-no-animation",
   match = {
     namespace = "vicinae",
   },
   no_anim = true,
+})
+
+-- Keyring/auth prompts should receive focus immediately when VS Code asks to unlock secrets.
+hl.window_rule({
+  name = "auth-prompts-focus",
+  match = {
+    title = "^(Authentication Required|Unlock Login Keyring)$",
+  },
+  float = true,
+  center = true,
+  stay_focused = true,
+  focus_on_activate = true,
 })
