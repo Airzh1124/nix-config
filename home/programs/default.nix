@@ -8,6 +8,7 @@
     ./hyprland
     ./kitty.nix
     ./noctalia.nix
+    ./obs.nix
     ./obsidian.nix
     ./rime
     ./syncthing.nix

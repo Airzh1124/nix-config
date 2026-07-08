@@ -7,6 +7,7 @@
     # Desktop applications
     papers
     telegram-desktop
+    mpv
 
     # Everyday CLI utilities
     cowsay

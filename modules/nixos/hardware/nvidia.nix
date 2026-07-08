@@ -7,7 +7,6 @@
   #   options nvidia NVreg_RegistryDwords=EnableBrightnessControl=1
   # '';
 
-  hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
