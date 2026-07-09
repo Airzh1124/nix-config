@@ -5,8 +5,9 @@
     ./codex.nix
     ./fish.nix
     ./git.nix
-    ./hyprland
+    # ./hyprland
     ./kitty.nix
+    ./niri
     ./noctalia.nix
     ./obs.nix
     ./obsidian.nix

@@ -12,15 +12,13 @@
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
-    size = 24;
+    size = 32;
     gtk.enable = true;
     x11.enable = true;
   };
 
   xresources.properties = {
-    "Xcursor.theme" = "Bibata-Modern-Classic";
-    "Xcursor.size" = 24;
-    "Xft.dpi" = 172;
+    "Xft.dpi" = 192;
   };
 
   home.stateVersion = "26.05";

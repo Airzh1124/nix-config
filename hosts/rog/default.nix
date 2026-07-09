@@ -8,7 +8,7 @@
 
     #desktop
     ../../modules/nixos/desktop/greetd.nix
-    ../../modules/nixos/desktop/hyprland.nix
+    ../../modules/nixos/desktop/niri.nix
     ../../modules/nixos/desktop/input.nix
     ../../modules/nixos/desktop/keyring.nix
     ../../modules/nixos/desktop/stylix.nix
