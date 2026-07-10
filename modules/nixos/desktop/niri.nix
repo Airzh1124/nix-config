@@ -27,10 +27,21 @@
       xdg-desktop-portal-gnome
     ];
 
-    # 避免 xdg-desktop-portal-gnome 默认调用 Nautilus 做文件选择器。
-    # 你目前结构里没有 Nautilus，也没必要为了文件选择器引入它。
+    # Match portal backend selection to the niri desktop name. Keeping this under
+    # config.niri avoids relying on xdg-desktop-portal's generic common fallback.
+    # FileChooser stays on gtk to avoid xdg-desktop-portal-gnome pulling Nautilus.
     config.niri = {
+      default = [
+        "gnome"
+        "gtk"
+      ];
+      "org.freedesktop.impl.portal.Access" = [ "gtk" ];
       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
+      "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
   };
 

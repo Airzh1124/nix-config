@@ -5,6 +5,7 @@
     ./codex.nix
     ./fish.nix
     ./git.nix
+    ./google-chrome.nix
     # ./hyprland
     ./kitty.nix
     ./niri

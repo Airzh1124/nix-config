@@ -22,6 +22,7 @@
     #services
     ../../modules/nixos/services/audio.nix
     ../../modules/nixos/services/bluetooth.nix
+    ../../modules/nixos/services/mihomo.nix
     ../../modules/nixos/services/openssh.nix
     ../../modules/nixos/services/syncthing.nix
 

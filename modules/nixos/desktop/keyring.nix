@@ -13,6 +13,4 @@
       export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
     fi
   '';
-
-  xdg.portal.config.common."org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
 }
