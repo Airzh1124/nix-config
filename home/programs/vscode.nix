@@ -21,6 +21,14 @@ in
   programs.vscode = {
     enable = true;
     package = vscodeWithLibsecret;
+
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      pkief.material-icon-theme
+      jnoortheen.nix-ide
+      myriad-dreamin.tinymist
+    ];
+
+                        
   };
 
   # 不要再写 argvSettings，否则又会生成 ~/.vscode/argv.json 只读

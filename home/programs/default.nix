@@ -12,6 +12,8 @@
     ./obs.nix
     ./obsidian.nix
     ./rime
+    ./swayidle.nix
+    ./swaylock.nix
     ./syncthing.nix
     ./vicinae.nix
     ./vscode.nix
