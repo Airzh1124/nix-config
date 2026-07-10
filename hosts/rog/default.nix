@@ -24,7 +24,9 @@
     ../../modules/nixos/services/bluetooth.nix
     ../../modules/nixos/services/mihomo.nix
     ../../modules/nixos/services/openssh.nix
+    ../../modules/nixos/services/sunshine.nix
     ../../modules/nixos/services/syncthing.nix
+    ../../modules/nixos/services/tailscale.nix
 
     #system
     ../../modules/nixos/system/memory.nix
