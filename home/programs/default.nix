@@ -9,7 +9,7 @@
     # ./hyprland
     ./kitty.nix
     ./niri
-    ./noctalia.nix
+    ./noctalia
     ./obs.nix
     ./obsidian.nix
     ./rime

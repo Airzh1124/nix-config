@@ -1,10 +1,10 @@
-{ ... }:
+{ paths, ... }:
 
 {
   stylix = {
     enable = true;
-    base16Scheme = ../../../assets/schemes/base16/catppuccin-mocha.yaml;
-    image = ../../../assets/wallpapers/wallpaper_nixos.jpg;
+    base16Scheme = paths.assets.stylixScheme;
+    image = paths.assets.wallpapers.nixos;
     polarity = "dark";
 
     targets.fish.enable = false;

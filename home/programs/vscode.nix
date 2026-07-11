@@ -23,9 +23,10 @@ in
     package = vscodeWithLibsecret;
 
     profiles.default.extensions = with pkgs.vscode-extensions; [
-      pkief.material-icon-theme
       jnoortheen.nix-ide
       myriad-dreamin.tinymist
+      pkief.material-icon-theme
+      tamasfe.even-better-toml
     ];
 
                         

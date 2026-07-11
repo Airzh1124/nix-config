@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, paths, ... }:
 
 let
-  wallpaper = ../../assets/wallpapers/wallpaper_nixos.jpg;
+  wallpaper = paths.assets.wallpapers.nixos;
 in
 {
   programs.swaylock = {

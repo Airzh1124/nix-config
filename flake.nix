@@ -39,6 +39,7 @@
       username = "han";
       hostname = "rog";
       system = "x86_64-linux";
+      paths = import ./lib/paths.nix { inherit username; };
       pkgs-stable = import nixpkgs-stable {
         inherit system;
         config.allowUnfree = true;
@@ -49,7 +50,7 @@
         inherit system;
 
         specialArgs = {
-          inherit inputs username hostname pkgs-stable;
+          inherit inputs username hostname paths pkgs-stable;
         };
 
         modules = [
@@ -71,7 +72,7 @@
               vicinae.homeManagerModules.default
             ];
             home-manager.extraSpecialArgs = {
-              inherit inputs username hostname pkgs-stable;
+              inherit inputs username hostname paths pkgs-stable;
             };
             home-manager.users.${username} = import ./home;
           }

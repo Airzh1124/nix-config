@@ -1,0 +1,48 @@
+[shell]
+avatar_path = "@xdgDataHome@/avatars/avatar.jpg"
+ui_scale = 1.25
+clipboard_enabled = false
+
+[shell.screenshot]
+copy_to_clipboard = true
+save_to_file = false
+
+[shell.session]
+[[shell.session.actions]]
+action = "lock"
+variant = "primary"
+shortcut = "1"
+
+[[shell.session.actions]]
+action = "logout"
+shortcut = "2"
+
+[[shell.session.actions]]
+action = "lock_and_suspend"
+shortcut = "3"
+
+[[shell.session.actions]]
+action = "reboot"
+variant = "destructive"
+countdown_seconds = 5
+shortcut = "4"
+
+[[shell.session.actions]]
+action = "shutdown"
+variant = "destructive"
+countdown_seconds = 5
+shortcut = "5"
+
+[bar.default]
+auto_hide = true
+reserve_space = false
+start = ["wallpaper", "workspaces"]
+end = ["tray", "notifications", "battery", "session"]
+scale = 1.25
+
+[control_center]
+width = 900
+
+[wallpaper]
+enabled = true
+directory = "@xdgDataHome@/wallpapers"

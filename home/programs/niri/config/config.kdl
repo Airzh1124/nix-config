@@ -3,11 +3,11 @@
 // Check the wiki for a full description of the configuration:
 // https://niri-wm.github.io/niri/Configuration:-Introduction
 
-include "/home/han/nix-config/home/programs/niri/config/binds.kdl"
-include "/home/han/nix-config/home/programs/niri/config/general.kdl"
-include "/home/han/nix-config/home/programs/niri/config/inputs.kdl"
-include "/home/han/nix-config/home/programs/niri/config/layouts.kdl"
-include "/home/han/nix-config/home/programs/niri/config/rules.kdl"
+include "binds.kdl"
+include "general.kdl"
+include "inputs.kdl"
+include "layouts.kdl"
+include "rules.kdl"
 
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
@@ -81,7 +81,6 @@ animations {
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
 }
-
 
 
 

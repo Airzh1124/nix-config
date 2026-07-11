@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, paths, ... }:
 
 {
   imports = [
@@ -6,8 +6,8 @@
     ./programs
   ];
 
-  home.username = "han";
-  home.homeDirectory = "/home/han";
+  home.username = username;
+  home.homeDirectory = paths.user.homeDirectory;
 
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";

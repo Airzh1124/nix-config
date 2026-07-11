@@ -1,9 +1,9 @@
-{ ... }:
+{ username, ... }:
 
 {
-  users.users.han = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "han";
+    description = username;
     # Sunshine uses /dev/uinput for Moonlight keyboard, mouse, and gamepad input.
     extraGroups = [ "wheel" "networkmanager" "video" "uinput" ];
   };

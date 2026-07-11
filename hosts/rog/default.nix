@@ -32,7 +32,7 @@
     ../../modules/nixos/system/memory.nix
 
     #users
-    ../../users/han
+    ../../users
   ];
 
   networking.hostName = "rog";
