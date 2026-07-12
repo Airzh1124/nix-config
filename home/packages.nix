@@ -56,6 +56,9 @@
     usbutils
 
     # Development tools
+    # AI coding CLIs come from llm-agents.nix for regularly updated upstream builds.
+    llm-agents.opencode
+    llm-agents.cc-switch-cli
     uv
 
     # Cloud and file sync tools

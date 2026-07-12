@@ -18,4 +18,4 @@
 - When managing a package through Home Manager, inspect the module source first and avoid redundant settings whose defaults already match the intended behavior.
 - Avoid creating a separate file for a tiny program config when it clearly belongs with an existing related module.
 - When changing configuration, add nearby comments that explain the intent of the change and any non-obvious constraint it depends on.
-- After completing changes, provide a GitHub comment summarizing the changes made in this turn.
+- After completing changes, provide a GitHub comment in English summarizing the changes made in this turn.
