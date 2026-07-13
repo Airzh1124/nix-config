@@ -27,6 +27,11 @@ in
       myriad-dreamin.tinymist
       pkief.material-icon-theme
       tamasfe.even-better-toml
+      # Keep project-provided Python and Rust tooling available in the editor.
+      ms-python.python
+      charliermarsh.ruff
+      rust-lang.rust-analyzer
+      mkhl.direnv
     ];
 
                         

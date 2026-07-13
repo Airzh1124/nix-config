@@ -63,5 +63,9 @@
 
     # Cloud and file sync tools
     rclone
+
+
+  #Github CLI tools
+    gh
   ];
 }
