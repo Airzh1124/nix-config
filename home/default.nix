@@ -10,6 +10,7 @@
   home.homeDirectory = paths.user.homeDirectory;
 
   home.pointerCursor = {
+    enable = true;
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     size = 32;
