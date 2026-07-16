@@ -29,6 +29,8 @@ in
       tamasfe.even-better-toml
       # Keep project-provided Python and Rust tooling available in the editor.
       ms-python.python
+      # Run the project's ipykernel directly from VS Code notebooks.
+      ms-toolsai.jupyter
       charliermarsh.ruff
       rust-lang.rust-analyzer
       mkhl.direnv
