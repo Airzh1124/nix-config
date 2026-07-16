@@ -1,4 +1,4 @@
-{ ... }:
+{ paths, ... }:
 
 {
   imports = [
@@ -20,4 +20,10 @@
     ./yazi.nix
     ./zen-browser.nix
   ];
+
+  programs.nh = {
+    enable = true;
+    # Target this repository's rog configuration so `nh os switch` needs no flake argument.
+    osFlake = "${paths.user.nixConfigDirectory}#rog";
+  };
 }
