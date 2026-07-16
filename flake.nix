@@ -15,8 +15,8 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
+      url = "github:noctalia-dev/noctalia/cachix";
+      # inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
     stylix = {
@@ -34,7 +34,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, llm-agents, stylix, vicinae, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, stylix, vicinae, ... }:
     let
       username = "han";
       hostname = "rog";
@@ -57,12 +57,6 @@
           ./hosts/rog
           stylix.nixosModules.stylix
           vicinae.nixosModules.default
-
-          {
-            nixpkgs.overlays = [
-              llm-agents.overlays.default
-            ];
-          }
 
           home-manager.nixosModules.home-manager
           {

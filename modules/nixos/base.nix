@@ -9,10 +9,12 @@
     # Numtide provides pre-built llm-agents.nix packages; keeping its cache here
     # avoids rebuilding Codex and other AI coding tools locally.
     extra-substituters = [
+      "https://noctalia.cachix.org"
       "https://vicinae.cachix.org"
       "https://cache.numtide.com"
     ];
     extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];

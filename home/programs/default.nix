@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./codex.nix
     ./fish.nix
     ./git.nix
     ./google-chrome.nix

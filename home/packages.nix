@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Packages without meaningful Home Manager modules live here.
@@ -56,10 +56,8 @@
     usbutils
 
     # Development tools
-    # AI coding CLIs come from llm-agents.nix for regularly updated upstream builds.
-    llm-agents.opencode
-    llm-agents.cc-switch-cli
     uv
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
 
     # Cloud and file sync tools
     rclone
