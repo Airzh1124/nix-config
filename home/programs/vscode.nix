@@ -29,6 +29,8 @@ in
       tamasfe.even-better-toml
       # Keep project-provided Python and Rust tooling available in the editor.
       ms-python.python
+      # Pylance handles notebook virtual documents; Jedi raises KeyError for them.
+      ms-python.vscode-pylance
       # Run the project's ipykernel directly from VS Code notebooks.
       ms-toolsai.jupyter
       charliermarsh.ruff
