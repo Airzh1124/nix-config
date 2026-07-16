@@ -12,11 +12,14 @@
       "https://noctalia.cachix.org"
       "https://vicinae.cachix.org"
       "https://cache.numtide.com"
+      # CUDA-enabled packages are not built by the main NixOS Hydra cache.
+      "https://cache.nixos-cuda.org"
     ];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     ];
   };
 
