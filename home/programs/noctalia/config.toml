@@ -43,6 +43,11 @@ scale = 1.25
 [control_center]
 width = 900
 
+[system.monitor]
+enabled = true  
+# Keep GPU polling infrequent and avoid unnecessarily waking the discrete GPU.
+gpu_poll_seconds = 5.0
+
 [wallpaper]
 enabled = true
 directory = "@xdgDataHome@/wallpapers"
