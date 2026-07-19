@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # Packages without meaningful Home Manager modules live here.
@@ -57,7 +57,6 @@
 
     # Development tools
     uv
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
 
     # Cloud and file sync tools
     rclone
