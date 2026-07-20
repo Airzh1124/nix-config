@@ -10,7 +10,8 @@
 - Do not update `flake.lock` unless explicitly requested.
 
 ## Configuration Style
-- When configuring paths, refer to `lib/paths.nix` and reuse its definitions where applicable.
+- Before adding or modifying any path-related configuration, you MUST first inspect `lib/paths.nix`.
+- When `lib/paths.nix` already provides a suitable definition, you MUST reuse it instead of duplicating a path literal. Add reusable or centrally meaningful paths there; keep a path local only when it is genuinely one-off and module-specific.
 - Prefer Home Manager for user programs and shell integrations.
 - Keep system modules for NixOS services, hardware, boot, networking, and login/session-level system settings.
 - Put packages with meaningful Home Manager modules under `home/programs`.
