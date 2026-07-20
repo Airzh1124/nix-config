@@ -3,6 +3,9 @@
 // https://niri-wm.github.io/niri/Configuration:-Layout
 
 layout {
+    // Avoid Niri's gray default before the wallpaper surface commits its first frame.
+    background-color "#1e1e2e"
+
     // Set gaps around windows in logical pixels.
     gaps 8
 
