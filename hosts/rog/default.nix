@@ -29,6 +29,7 @@
     ../../modules/nixos/services/tailscale.nix
 
     #system
+    ../../modules/nixos/system/maintenance.nix
     ../../modules/nixos/system/memory.nix
 
     #users
