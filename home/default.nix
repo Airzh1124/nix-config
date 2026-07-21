@@ -22,6 +22,8 @@
     enable = true;
     # Keep desktop-wide application associations declarative, including Yazi's PDF opener.
     defaultApplications = {
+      # Use Nautilus when graphical applications request a directory opener.
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
       "application/pdf" = [ "sioyek.desktop" ];
       "x-scheme-handler/http" = [ "zen.desktop" ];
       "x-scheme-handler/https" = [ "zen.desktop" ];

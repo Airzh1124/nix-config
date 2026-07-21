@@ -16,6 +16,10 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  # Niri 不自带桌面文件管理运行时；为 Home Manager 管理的 Nautilus 启用 GVfs。
+  # 该模块会一并启用 udisks2、FUSE、D-Bus 与 MTP 支持。
+  services.gvfs.enable = true;
+
   # Niri 不是完整桌面环境，所以需要补 portal。
   # gtk: 基础 fallback portal / 文件选择器
   # gnome: Niri 官方文档说明 screencasting 需要它
@@ -29,7 +33,8 @@
 
     # Match portal backend selection to the niri desktop name. Keeping this under
     # config.niri avoids relying on xdg-desktop-portal's generic common fallback.
-    # FileChooser stays on gtk to avoid xdg-desktop-portal-gnome pulling Nautilus.
+    # FileChooser stays on gtk so Nautilus remains explicitly managed by Home Manager
+    # instead of being coupled to the GNOME portal implementation.
     config.niri = {
       default = [
         "gnome"

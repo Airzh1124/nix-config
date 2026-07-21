@@ -5,6 +5,7 @@
   # Program-specific configuration belongs in home/programs.
   home.packages = with pkgs; [
     # Desktop applications
+    nautilus
     sioyek
     telegram-desktop
     mpv
