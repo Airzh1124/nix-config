@@ -9,6 +9,9 @@
 - Do not run Nix evaluation, build, rebuild, or switch commands unless the user explicitly requests it.
 - Do not update `flake.lock` unless explicitly requested.
 
+## Hardware Checks
+- If GPU detection or a GPU-related test fails inside the sandbox, do not conclude that the GPU or driver is unavailable. Request permission to rerun the relevant read-only check outside the sandbox before diagnosing the host.
+
 ## Configuration Style
 - Before adding or modifying any path-related configuration, you MUST first inspect `lib/paths.nix`.
 - When `lib/paths.nix` already provides a suitable definition, you MUST reuse it instead of duplicating a path literal. Add reusable or centrally meaningful paths there; keep a path local only when it is genuinely one-off and module-specific.
