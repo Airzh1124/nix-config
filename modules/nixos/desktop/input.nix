@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
+let
+  vinput = inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default;
+in
 {
   i18n.inputMethod = {
     enable = true;
@@ -9,6 +12,8 @@
       (fcitx5-rime.override {
         rimeDataPkgs = [ rime-ice ];
       })
+      # Keep voice input inside the Fcitx5 wrapper so the addon is discoverable.
+      vinput
     ];
 
     # Set boolean i18n.inputMethod.fcitx5.waylandFrontend to true to suppress warnings about environment variables. 

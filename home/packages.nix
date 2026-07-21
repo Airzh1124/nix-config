@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   # Packages without meaningful Home Manager modules live here.
@@ -9,6 +9,9 @@
     sioyek
     telegram-desktop
     mpv
+    # The package ships its own D-Bus-activatable user service; Fcitx5 addon
+    # discovery is configured separately in the system input-method wrapper.
+    inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Everyday CLI utilities
     cowsay
