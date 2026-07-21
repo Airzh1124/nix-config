@@ -8,13 +8,20 @@ layer-rule {
   place-within-backdrop true
 }
 
-// Window rules for noctalia
+// Give every window a consistent compositor-defined shape. Drawing the focus
+// ring without a solid background keeps it confined to the rounded outer edge.
 window-rule {
-  // Rounded corners for a modern look.
-  geometry-corner-radius 10
-
-  // Clips window contents to the rounded corner boundaries.
+  geometry-corner-radius 14
   clip-to-geometry true
+  draw-border-with-background false
+}
+
+// Floating windows get depth while tiled columns retain Niri's clean canvas.
+window-rule {
+  match is-floating=true
+  shadow {
+    on
+  }
 }
 
 // Floating Noctalia settings window.
