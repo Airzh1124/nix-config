@@ -2,6 +2,12 @@
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
+// Show Noctalia's cached blurred wallpaper behind workspaces in the overview.
+layer-rule {
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
+}
+
 // Window rules for noctalia
 window-rule {
   // Rounded corners for a modern look.

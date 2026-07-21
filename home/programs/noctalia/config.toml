@@ -48,6 +48,13 @@ enabled = true
 # Keep GPU polling infrequent and avoid unnecessarily waking the discrete GPU.
 gpu_poll_seconds = 5.0
 
+# Keep a blurred wallpaper texture ready for Niri's overview backdrop.
+# This stays resident in GPU memory so overview entry does not need to regenerate it.
+[backdrop]
+enabled = true
+blur_intensity = 0.5
+tint_intensity = 0.3
+
 [wallpaper]
 enabled = true
 directory = "@xdgDataHome@/wallpapers"
