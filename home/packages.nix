@@ -6,6 +6,8 @@
   home.packages = with pkgs; [
     # Desktop applications
     nautilus
+    # Use ONLYOFFICE for Microsoft Office documents with stronger OOXML compatibility.
+    onlyoffice-desktopeditors
     sioyek
     telegram-desktop
     mpv

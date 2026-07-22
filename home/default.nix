@@ -25,6 +25,19 @@
       # Use Nautilus when graphical applications request a directory opener.
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
       "application/pdf" = [ "sioyek.desktop" ];
+      # Open common Microsoft Office formats in the matching ONLYOFFICE editor.
+      "application/msword" = [ "onlyoffice-desktopeditors.desktop" ];
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
+        "onlyoffice-desktopeditors.desktop"
+      ];
+      "application/vnd.ms-excel" = [ "onlyoffice-desktopeditors.desktop" ];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [
+        "onlyoffice-desktopeditors.desktop"
+      ];
+      "application/vnd.ms-powerpoint" = [ "onlyoffice-desktopeditors.desktop" ];
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [
+        "onlyoffice-desktopeditors.desktop"
+      ];
       "x-scheme-handler/http" = [ "zen.desktop" ];
       "x-scheme-handler/https" = [ "zen.desktop" ];
       "x-scheme-handler/chrome" = [ "zen.desktop" ];
