@@ -2,7 +2,9 @@
 
 {
   imports = [
+    ./btop.nix
     ./codex
+    ./document-readers.nix
     ./fish.nix
     ./git.nix
     ./google-chrome.nix

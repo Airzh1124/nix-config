@@ -8,7 +8,6 @@
     nautilus
     # Use ONLYOFFICE for Microsoft Office documents with stronger OOXML compatibility.
     onlyoffice-desktopeditors
-    sioyek
     telegram-desktop
     mpv
     # The package ships its own D-Bus-activatable user service; Fcitx5 addon
@@ -45,7 +44,6 @@
     gnupg
 
     # System monitoring
-    (btop.override { cudaSupport = true; })
     iftop
     iotop
     lm_sensors

@@ -24,7 +24,9 @@
     defaultApplications = {
       # Use Nautilus when graphical applications request a directory opener.
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      "application/pdf" = [ "sioyek.desktop" ];
+      # Keep document openers deterministic across Nautilus, Yazi, and xdg-open.
+      "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+      "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
       # Open common Microsoft Office formats in the matching ONLYOFFICE editor.
       "application/msword" = [ "onlyoffice-desktopeditors.desktop" ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
