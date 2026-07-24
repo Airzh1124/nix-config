@@ -30,9 +30,8 @@ binds {
 
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
 
-    // -------------------------Swaylock------------------------
-
-    Mod+Shift+L hotkey-overlay-title="Lock Screen" { spawn "swaylock" "-f"; }
+    // Acquire the external session lock before requesting suspend.
+    Mod+Shift+L hotkey-overlay-title="Lock and Suspend" { spawn-sh "swaylock -f && systemctl suspend"; }
 
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.

@@ -7,31 +7,31 @@ clipboard_enabled = false
 copy_to_clipboard = true
 save_to_file = false
 
+[lockscreen]
+# Let swaylock exclusively own ext-session-lock-v1 and logind lock handling.
+enabled = false
+
 [shell.session]
 [[shell.session.actions]]
-action = "lock"
+# Keep this visible while Noctalia's native lock screen is disabled.
+action = "command"
+label = "Lock & Suspend"
+glyph = "bedtime"
+command = "swaylock -f && systemctl suspend"
 variant = "primary"
 shortcut = "1"
-
-[[shell.session.actions]]
-action = "logout"
-shortcut = "2"
-
-[[shell.session.actions]]
-action = "lock_and_suspend"
-shortcut = "3"
 
 [[shell.session.actions]]
 action = "reboot"
 variant = "destructive"
 countdown_seconds = 5
-shortcut = "4"
+shortcut = "2"
 
 [[shell.session.actions]]
 action = "shutdown"
 variant = "destructive"
 countdown_seconds = 5
-shortcut = "5"
+shortcut = "3"
 
 [bar.default]
 auto_hide = true
