@@ -6,6 +6,21 @@
   home.packages = with pkgs; [
     # Desktop applications
     nautilus
+    # Wrap the final AppImage launcher because overriding its fixup phase does
+    # not affect the bubblewrap executable produced by appimageTools.
+    (symlinkJoin {
+      name = "wechat-with-fcitx";
+      paths = [ wechat ];
+      nativeBuildInputs = [ makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/wechat \
+          --run '${xrdb}/bin/xrdb -merge "$HOME/.Xresources"' \
+          --set GTK_IM_MODULE fcitx \
+          --set QT_IM_MODULE fcitx \
+          --set XMODIFIERS @im=fcitx \
+          --prefix QT_PLUGIN_PATH : "${libsForQt5.fcitx5-qt}/${libsForQt5.qtbase.qtPluginPrefix}"
+      '';
+    })
     # Use ONLYOFFICE for Microsoft Office documents with stronger OOXML compatibility.
     onlyoffice-desktopeditors
     telegram-desktop

@@ -75,7 +75,7 @@
   xdg.dataFile."applications/mimeapps.list".force = true;
 
   xresources.properties = {
-    "Xft.dpi" = 192;
+    "Xft.dpi" = 144;
   };
 
   home.stateVersion = "26.05";
