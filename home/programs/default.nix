@@ -20,6 +20,7 @@
     ./syncthing.nix
     ./vicinae.nix
     ./vscode.nix
+    ./wechat.nix
     ./yazi.nix
     ./zen-browser.nix
   ];
