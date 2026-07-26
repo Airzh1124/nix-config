@@ -4,27 +4,44 @@
   # Packages without meaningful Home Manager modules live here.
   # Program-specific configuration belongs in home/programs.
   home.packages = with pkgs; [
-    # Desktop applications
+    # File management
     nautilus
-    # Use ONLYOFFICE for Microsoft Office documents with stronger OOXML compatibility.
+
+    # Office and document tools
     onlyoffice-desktopeditors
-    telegram-desktop
+    poppler-utils
+
+    # Image editing and conversion
+    imagemagick
+
+
+    # Media playback and previews
+    ffmpegthumbnailer
     mpv
+
+    # Communication
+    telegram-desktop
+
+    # Input methods
     # The package ships its own D-Bus-activatable user service; Fcitx5 addon
     # discovery is configured separately in the system input-method wrapper.
     inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-    # Everyday CLI utilities
-    cowsay
+    # Shell navigation and search
     fd
-    file
     fzf
-    gawk
-    gnused
     ripgrep
     tree
     which
     zoxide
+
+    # General command-line utilities
+    cowsay
+    file
+
+    # Text processing
+    gawk
+    gnused
 
     # Archive and compression tools
     gnutar
@@ -34,11 +51,6 @@
     xz
     zip
     zstd
-
-    # File previews and media metadata, used by tools such as yazi.
-    ffmpegthumbnailer
-    imagemagick
-    poppler-utils
 
     # Security and crypto tools
     gnupg
@@ -60,13 +72,10 @@
     usbutils
 
     # Development tools
+    gh
     uv
 
     # Cloud and file sync tools
     rclone
-
-
-  #Github CLI tools
-    gh
   ];
 }
