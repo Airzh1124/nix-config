@@ -13,6 +13,7 @@
 
     # Image editing and conversion
     imagemagick
+    pinta
 
 
     # Media playback and previews
