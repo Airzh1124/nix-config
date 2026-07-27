@@ -3,6 +3,11 @@ avatar_path = "@xdgDataHome@/avatars/avatar.jpg"
 ui_scale = 1.25
 clipboard_enabled = false
 
+[location]
+auto_locate = false
+# Change the address to "Hong Kong" when moving there.
+address = "Shanghai"
+
 [shell.screenshot]
 copy_to_clipboard = true
 save_to_file = false
