@@ -24,6 +24,12 @@ window-rule {
   }
 }
 
+// Let Zen restore its saved width instead of forcing the global half-width.
+window-rule {
+  match app-id=r#"^zen$"#
+  default-column-width {}
+}
+
 // Floating Noctalia settings window.
 window-rule {
   match app-id="dev.noctalia.Noctalia"
