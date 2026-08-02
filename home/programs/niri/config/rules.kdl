@@ -24,10 +24,12 @@ window-rule {
   }
 }
 
-// Let Zen restore its saved width instead of forcing the global half-width.
+// Zen keeps its client-side shadow extents until the first focus change unless
+// it is told that the window is tiled, shrinking the initial visible geometry.
 window-rule {
   match app-id=r#"^zen$"#
-  default-column-width {}
+  open-maximized true
+  tiled-state true
 }
 
 // Floating Noctalia settings window.
