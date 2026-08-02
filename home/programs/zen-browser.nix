@@ -44,20 +44,5 @@ let
     };
 in
 {
-  home.packages = [
-    # 绕过 Mozilla 尚未解决的 Wayland 光标位置同步问题 (https://bugzilla.mozilla.org/show_bug.cgi?id=1865779)
-    (browser.overrideAttrs (oldAttrs: {
-      # Firefox's native Wayland text-input path does not keep the Fcitx5
-      # candidate position in sync, so use the GTK3 input module for Zen only.
-      makeWrapperArgs = oldAttrs.makeWrapperArgs ++ [
-        "--set"
-        "GTK_IM_MODULE"
-        "fcitx"
-        "--prefix"
-        "GTK_PATH"
-        ":"
-        "${pkgs.fcitx5-gtk}/lib/gtk-3.0"
-      ];
-    }))
-  ];
+  home.packages = [ browser ];
 }
