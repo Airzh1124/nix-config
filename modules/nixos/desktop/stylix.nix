@@ -17,6 +17,14 @@
     image = paths.assets.wallpapers.nixos;
     polarity = "dark";
 
+    # Provide standard symbolic icons for GTK applications such as Foliate.
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+      light = "Papirus";
+    };
+
     targets.fish.enable = false;
   };
 }
