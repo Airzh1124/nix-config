@@ -5,6 +5,7 @@
     ./btop.nix
     ./codex
     ./document-readers.nix
+    ./fastfetch.nix
     ./fish.nix
     ./git.nix
     ./google-chrome.nix
