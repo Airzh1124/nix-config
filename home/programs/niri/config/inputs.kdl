@@ -42,7 +42,9 @@ input {
         // off
         // natural-scroll
         // accel-speed 0.2
-        // accel-profile "flat"
+        // Keep desktop acceleration out of the shared Windows/Linux gaming profile;
+        // DPI, polling rate, and button mappings remain in the mouse's onboard memory.
+        accel-profile "flat"
         // scroll-method "no-scroll"
     }
 
