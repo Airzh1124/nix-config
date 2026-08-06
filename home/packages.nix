@@ -18,6 +18,7 @@
 
     # Media playback and previews
     ffmpegthumbnailer
+    go-musicfox
     mpv
 
     # Communication
