@@ -17,13 +17,13 @@
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
-    # Enable this block when using Hybrid/Standard mode
-    # (gpu_mux_mode=1, dgpu_disable=0) for NVIDIA PRIME render offload.
-    # prime = {
-    #   offload.enable = true;
-    #   offload.enableOffloadCmd = true;
-    #   intelBusId = "PCI:0:2:0";
-    #   nvidiaBusId = "PCI:2:0:0";
-    # };
+    # Hybrid/Standard mode keeps the desktop on Intel and wakes NVIDIA for
+    # explicitly offloaded applications such as Steam.
+    prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:2:0:0";
+    };
   };
 }

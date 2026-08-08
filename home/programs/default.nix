@@ -7,6 +7,7 @@
     ./document-readers.nix
     ./fastfetch.nix
     ./fish.nix
+    ./gaming.nix
     ./git.nix
     ./google-chrome.nix
     # ./hyprland

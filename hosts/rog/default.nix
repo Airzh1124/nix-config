@@ -20,6 +20,9 @@
     ../../modules/nixos/hardware/graphics.nix
     ../../modules/nixos/hardware/nvidia.nix
 
+    #programs
+    ../../modules/nixos/programs/steam.nix
+
     #services
     ../../modules/nixos/services/audio.nix
     ../../modules/nixos/services/bluetooth.nix
