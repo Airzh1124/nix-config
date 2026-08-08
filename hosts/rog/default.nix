@@ -16,6 +16,7 @@
 
     #hardware
     ../../modules/nixos/hardware/asus-rog.nix
+    ../../modules/nixos/hardware/atk-rs6-air.nix
     ../../modules/nixos/hardware/graphics.nix
     ../../modules/nixos/hardware/nvidia.nix
 
