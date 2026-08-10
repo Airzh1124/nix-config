@@ -46,6 +46,13 @@ include "rules.kdl"
     position x=1280 y=0
 }
 
+output "eDP-1" {
+    // The NVIDIA MUX path advertises 60 Hz as preferred, so pin the panel's
+    // native maximum refresh rate instead of relying on automatic selection.
+    mode "2560x1600@240.000"
+    scale 1.5
+}
+
 
 
 // Add lines like this to spawn processes at startup.
@@ -81,7 +88,6 @@ animations {
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
 }
-
 
 
 
