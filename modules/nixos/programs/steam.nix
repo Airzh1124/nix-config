@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   # Keep Steam and every game it launches on the NVIDIA GPU while the laptop
@@ -14,11 +14,16 @@ in
   programs.steam = {
     enable = true;
 
-    # Apply PRIME offload to the whole Steam process tree so games use the
-    # discrete GPU without requiring per-game launch options.
-    package = pkgs.steam.override {
-      extraEnv = nvidiaOffloadEnvironment;
-    };
+    # Apply PRIME offload only in Hybrid mode. In the dedicated-GPU
+    # specialisation NVIDIA is already the primary GPU, so NVIDIA-G0 does not
+    # represent an offload provider and Steam should use the unwrapped package.
+    package =
+      if config.hardware.nvidia.prime.offload.enable then
+        pkgs.steam.override {
+          extraEnv = nvidiaOffloadEnvironment;
+        }
+      else
+        pkgs.steam;
 
     # Keep Valve Proton as the default and expose Proton-GE for games that need
     # its additional compatibility patches.
