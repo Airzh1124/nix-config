@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
@@ -31,5 +31,13 @@
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:2:0:0";
     };
+  };
+
+  # The dedicated-GPU boot entry must be paired with gpu_mux_mode=0 while
+  # dgpu_disable remains 0. NVIDIA then drives the panel directly, so PRIME
+  # offload and its wrapper are both disabled for this specialisation.
+  specialisation.nvidia-dgpu.configuration = {
+    hardware.nvidia.prime.offload.enable = lib.mkForce false;
+    hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
   };
 }
