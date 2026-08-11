@@ -1,4 +1,4 @@
-{ config, inputs, paths, pkgs, ... }:
+{ config, inputs, paths, ... }:
 
 let
   noctaliaSettings = builtins.fromTOML (
@@ -23,10 +23,6 @@ in
 
   programs.noctalia = {
     enable = true;
-
-    # Add the NVIDIA driver runpath so NVML-backed GPU statistics remain
-    # available when the MUX makes the discrete GPU the active display device.
-    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
 
     # Parse the TOML into an attrset so Stylix can merge its generated palette,
     # mode, font, opacity, and default wallpaper with the user-facing settings.
