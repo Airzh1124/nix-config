@@ -10,7 +10,7 @@
   # Keep detailed PM messages enabled for the next suspend cycle so an
   # unexpected s2idle wakeup can be traced back to its IRQ or device.
   systemd.services.suspend-diagnostics = {
-    description = "Enable suspend diagnostics";
+    description = "Enable suspend diagnostics and ACPI wake tracing";
     wantedBy = [ "sleep.target" ];
     before = [ "sleep.target" ];
     unitConfig.ConditionPathExists = "/sys/power/pm_debug_messages";
@@ -18,6 +18,26 @@
     script = ''
       echo 1 > /sys/power/pm_debug_messages
       echo 1 > /sys/power/pm_print_times
+
+      # Trace the GPE6B AML handler only during the suspend cycle. Its nested
+      # calls cover the PCIe and PCH wake paths without globally tracing ACPI.
+      trace_parameters=/sys/module/acpi/parameters
+      if [ -w "$trace_parameters/trace_debug_layer" ] \
+        && [ -w "$trace_parameters/trace_debug_level" ] \
+        && [ -w "$trace_parameters/trace_method_name" ] \
+        && [ -w "$trace_parameters/trace_state" ]; then
+        if echo 0x80 > "$trace_parameters/trace_debug_layer" \
+          && echo 0x10 > "$trace_parameters/trace_debug_level" \
+          && printf '%s\n' '\_GPE._L6B' > "$trace_parameters/trace_method_name" \
+          && echo opcode > "$trace_parameters/trace_state"; then
+          echo "suspend-diagnostics: tracing ACPI method \\_GPE._L6B"
+        else
+          echo "suspend-diagnostics: failed to enable ACPI method tracing"
+          echo disable > "$trace_parameters/trace_state" 2>/dev/null || true
+        fi
+      else
+        echo "suspend-diagnostics: ACPI method tracing unavailable"
+      fi
 
       # Store a per-cycle baseline so resume logging can identify exactly
       # which ACPI GPE counter changed while the system was suspending.
@@ -34,6 +54,13 @@
   # Capture volatile wakeup information immediately after resume; these
   # sysfs/debugfs values would otherwise be lost at the next reboot.
   powerManagement.resumeCommands = ''
+    trace_state=/sys/module/acpi/parameters/trace_state
+    if [ -w "$trace_state" ] && echo disable > "$trace_state"; then
+      echo "suspend-diagnostics: ACPI method tracing disabled"
+    else
+      echo "suspend-diagnostics: unable to disable ACPI method tracing"
+    fi
+
     echo "suspend-diagnostics: resume wakeup snapshot"
 
     if wake_irq="$(${pkgs.coreutils}/bin/cat /sys/power/pm_wakeup_irq 2>/dev/null)"; then
