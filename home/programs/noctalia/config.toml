@@ -48,6 +48,10 @@ scale = 1.25
 [control_center]
 width = 900
 
+[osd.kinds]
+# Fcitx5 already indicates the active input method; avoid a duplicate popup.
+keyboard_layout = false
+
 [system.monitor]
 enabled = true  
 # Keep GPU polling infrequent and avoid unnecessarily waking the discrete GPU.
