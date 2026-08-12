@@ -1,0 +1,12 @@
+[Groups/0]
+# Keep Rime as the only configured input method in the default group.
+Name=Default
+Default Layout=us
+DefaultIM=rime
+
+[Groups/0/Items/0]
+Name=rime
+Layout=
+
+[GroupOrder]
+0=Default

@@ -1,0 +1,5 @@
+[Behavior]
+# Keep Rime active and let Rime itself handle Chinese/English switching.
+ActiveByDefault=True
+ShareInputState=No
+PreloadInputMethod=True

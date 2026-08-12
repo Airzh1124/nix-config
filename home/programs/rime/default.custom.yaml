@@ -4,10 +4,19 @@
 patch:
   __include: rime_ice_suggestion:/
   __patch:
+    # Keep full Pinyin and Flypy under the same Rime input method; use the
+    # schema menu (F4 or Ctrl+`) to switch between them.
     schema_list:
       - schema: rime_ice
+      - schema: double_pinyin_flypy
 
+    # Spell out the complete mapping because patching switch_key replaces the
+    # upstream mapping rather than merging individual keys.
     ascii_composer:
       good_old_caps_lock: true
       switch_key:
         Caps_Lock: noop
+        Shift_L: commit_code
+        Shift_R: noop
+        Control_L: noop
+        Control_R: noop
