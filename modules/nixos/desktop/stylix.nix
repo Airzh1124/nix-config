@@ -8,6 +8,11 @@
       # Metric-compatible substitutes keep Calibri/Cambria Office layouts stable.
       carlito
       caladea
+
+      # Install common UI fonts and all free Font Awesome 7 styles system-wide.
+      roboto
+      source-sans
+      font-awesome_7
     ];
   };
 
