@@ -32,11 +32,13 @@ in
         resumeCommand = powerOnMonitors;
       }
 
-      # 30 分钟后挂起
-      {
-        timeout = 1800;
-        command = "${systemctl} suspend";
-      }
+      # 暂时停用自动挂起：NVIDIA nvidia-modeset 在睡眠恢复后可能卡死于
+      # DIFR prefetch，并永久持有 nvkms 锁导致整个桌面失去响应。
+      # 等待 NVIDIA 上游 issue #1167 / PR #1192 的修复进入正式驱动后再恢复。
+      # {
+      #   timeout = 1800;
+      #   command = "${systemctl} suspend";
+      # }
     ];
 
     events = {
