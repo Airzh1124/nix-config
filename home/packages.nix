@@ -75,6 +75,7 @@
 
     # Development tools
     gh
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
     uv
 
     # Cloud and file sync tools
