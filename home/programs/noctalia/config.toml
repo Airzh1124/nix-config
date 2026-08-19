@@ -42,7 +42,7 @@ shortcut = "3"
 auto_hide = true
 reserve_space = false
 start = ["wallpaper", "workspaces"]
-end = ["tray", "notifications", "battery", "session"]
+end = ["tray", "notifications", "ram", "battery", "session"]
 scale = 1.25
 
 [control_center]
@@ -67,3 +67,10 @@ tint_intensity = 0.3
 [wallpaper]
 enabled = true
 directory = "@xdgDataHome@/wallpapers"
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_pct"
+visualization = "none"
+show_value = true
+show_glyph = true
