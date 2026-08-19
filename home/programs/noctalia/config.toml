@@ -57,6 +57,40 @@ enabled = true
 # Keep GPU polling infrequent and avoid unnecessarily waking the discrete GPU.
 gpu_poll_seconds = 5.0
 
+# highlighting
+cpu_usage_activity_threshold = 50     # %
+cpu_usage_critical_threshold = 90     # %
+cpu_temp_activity_threshold  = 60     # °C
+cpu_temp_critical_threshold  = 85     # °C
+cpu_freq_activity_threshold  = 2.5    # GHz
+cpu_freq_critical_threshold  = 4.5    # GHz
+gpu_temp_activity_threshold  = 60     # °C
+gpu_temp_critical_threshold  = 85     # °C
+gpu_usage_activity_threshold = 50     # %
+gpu_usage_critical_threshold = 95     # %
+gpu_vram_activity_threshold  = 50     # %
+gpu_vram_critical_threshold  = 90     # %
+ram_pct_activity_threshold   = 60     # %
+ram_pct_critical_threshold   = 90     # %
+swap_pct_activity_threshold  = 20     # %
+swap_pct_critical_threshold  = 80     # %
+disk_used_pct_activity_threshold = 80 # %
+disk_used_pct_critical_threshold = 95 # %
+disk_used_activity_threshold     = 80 # %
+disk_used_critical_threshold     = 95 # %
+disk_free_pct_activity_threshold = 80 # %
+disk_free_pct_critical_threshold = 95 # %
+disk_free_activity_threshold     = 80 # %
+disk_free_critical_threshold     = 95 # %
+net_rx_activity_threshold    = 1      # MB/s
+net_rx_critical_threshold    = 50     # MB/s
+net_tx_activity_threshold    = 1      # MB/s
+net_tx_critical_threshold    = 50     # MB/s
+
+
+
+
+
 # Keep a blurred wallpaper texture ready for Niri's overview backdrop.
 # This stays resident in GPU memory so overview entry does not need to regenerate it.
 [backdrop]
