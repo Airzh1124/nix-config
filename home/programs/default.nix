@@ -23,7 +23,7 @@
     ./vicinae.nix
     ./vscode.nix
     ./wechat.nix
-    ./yazi.nix
+    ./yazi
     ./zen-browser.nix
   ];
 
