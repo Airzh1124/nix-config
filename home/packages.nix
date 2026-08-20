@@ -77,6 +77,7 @@
     gh
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
     nodejs
+    python3
     uv
 
     # Cloud and file sync tools
