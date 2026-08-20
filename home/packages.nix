@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # File management
     nautilus
+    wl-clipboard
 
     # Office and document tools
     onlyoffice-desktopeditors
