@@ -2,3 +2,8 @@
 on = "y"
 run = [ 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]
 desc = "Yank and copy file URIs to clipboard"
+
+[[mgr.prepend_keymap]]
+on = "C"
+run = "plugin ouch"
+desc = "Compress with ouch"
