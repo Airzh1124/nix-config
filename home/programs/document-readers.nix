@@ -10,6 +10,7 @@
         continuous-hist-save = true;
         window-title-home-tilde = true;
         window-title-page = true;
+        statusbar-page-percent = true;
         scroll-page-aware = true;
       };
     };
