@@ -5,8 +5,13 @@
   programs = {
     zathura = {
       enable = true;
-      # Persist the current page after every page change instead of only on close.
-      options.continuous-hist-save = true;
+      # Persist reading progress and keep the window title compact and informative.
+      options = {
+        continuous-hist-save = true;
+        window-title-home-tilde = true;
+        window-title-page = true;
+        scroll-page-aware = true;
+      };
     };
     foliate.enable = true;
   };
