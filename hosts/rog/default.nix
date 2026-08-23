@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
 
     ../../modules/nixos/base.nix
+    ../../modules/nixos/common/home-manager.nix
 
     #desktop
     ../../modules/nixos/desktop/greetd.nix

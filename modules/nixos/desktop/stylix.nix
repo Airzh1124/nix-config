@@ -1,6 +1,8 @@
-{ paths, pkgs, ... }:
+{ inputs, paths, pkgs, ... }:
 
 {
+  imports = [ inputs.stylix.nixosModules.stylix ];
+
   fonts = {
     # Provide broad Unicode coverage system-wide, including CJK and emoji fonts.
     enableDefaultPackages = true;
