@@ -41,7 +41,7 @@ shortcut = "3"
 [bar.default]
 auto_hide = true
 reserve_space = false
-start = ["wallpaper", "workspaces"]
+start = ["workspaces"]
 end = ["tray", "notifications", "ram", "battery", "session"]
 scale = 1.25
 
