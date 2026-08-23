@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/nixos/base.nix
+    ../../modules/nixos/common/base.nix
     ../../modules/nixos/common/home-manager.nix
 
     #desktop
@@ -38,7 +38,7 @@
     ../../modules/nixos/system/memory.nix
 
     #users
-    ../../users
+    ../../users/han.nix
   ];
 
   networking.hostName = "rog";
