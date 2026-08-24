@@ -3,6 +3,11 @@
 {
   services.asusd.enable = true;
 
+  # asus-shutdown waits for a real shutdown request and otherwise ignores
+  # SIGTERM, which makes every NixOS switch leave it stuck for 90 seconds.
+  # Keep its normal 45-second graceful window, then let systemd clean it up.
+  systemd.services.asus-shutdown.serviceConfig.SendSIGKILL = true;
+
   # Noctalia reads the laptop battery state through UPower; without this
   # service its existing battery widget hides itself even when BAT0 exists.
   services.upower.enable = true;
