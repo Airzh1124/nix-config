@@ -47,16 +47,6 @@
     };
 
     associations.added = {
-      "x-scheme-handler/http" = [ "zen.desktop" "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "zen.desktop" "firefox.desktop" ];
-      "x-scheme-handler/chrome" = [ "zen.desktop" "firefox.desktop" ];
-      "text/html" = [ "firefox.desktop" "zen.desktop" ];
-      "application/x-extension-htm" = [ "firefox.desktop" "zen.desktop" ];
-      "application/x-extension-html" = [ "firefox.desktop" "zen.desktop" ];
-      "application/x-extension-shtml" = [ "firefox.desktop" "zen.desktop" ];
-      "application/xhtml+xml" = [ "firefox.desktop" "zen.desktop" ];
-      "application/x-extension-xhtml" = [ "firefox.desktop" "zen.desktop" ];
-      "application/x-extension-xht" = [ "firefox.desktop" "zen.desktop" ];
       "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
       "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
     };
