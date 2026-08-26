@@ -48,7 +48,6 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    git
     curl
     openconnect
     brightnessctl
