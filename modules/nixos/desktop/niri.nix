@@ -54,9 +54,6 @@
   # 认证 agent 本身后面可以放 Home Manager 启动，例如 Noctalia / polkit-gnome / kde polkit。
   security.polkit.enable = true;
 
-  # 锁屏 PAM。真正的 swaylock / gtklock 包后面放 Home Manager。
-  security.pam.services.swaylock = {};
-
   # 只放 Niri 必需或强相关的系统级 runtime。
   # 不放 kitty / fuzzel / mako / swayidle / screenshot / Noctalia。
   environment.systemPackages = with pkgs; [
