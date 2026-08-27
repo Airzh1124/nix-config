@@ -15,6 +15,9 @@
       roboto
       source-sans
       font-awesome_7
+
+      # Yazi renders file icons as Nerd Font glyphs in the terminal.
+      nerd-fonts.jetbrains-mono
     ];
   };
 
