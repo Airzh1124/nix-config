@@ -70,6 +70,7 @@
 
     # Hardware and network inspection
     ethtool
+    iw
     pciutils
     usbutils
 

@@ -3,6 +3,10 @@ avatar_path = "@xdgDataHome@/avatars/avatar.jpg"
 ui_scale = 1.25
 clipboard_enabled = false
 
+[plugins]
+# Enable the hotspot declaratively, but keep its Wi-Fi password out of Git.
+enabled = ["cleboost/hotspot"]
+
 [location]
 auto_locate = false
 # Change the address to "Hong Kong" when moving there.
@@ -47,6 +51,25 @@ scale = 1.25
 
 [control_center]
 width = 900
+
+# Keep the default shortcuts, replacing Power Profile with the hotspot toggle.
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "cleboost/hotspot:cc-toggle"
 
 [osd.kinds]
 # Fcitx5 already indicates the active input method; avoid a duplicate popup.
