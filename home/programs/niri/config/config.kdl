@@ -47,10 +47,17 @@ include "rules.kdl"
 }
 
 output "eDP-1" {
-    // The NVIDIA MUX path advertises 60 Hz as preferred, so pin the panel's
-    // native maximum refresh rate instead of relying on automatic selection.
+    // Keep a usable fallback when the external monitor is disconnected;
+    // kanshi disables this output only while the desk monitor is present.
     mode "2560x1600@240.000"
     scale 1.5
+}
+
+output "PNP(AOC) Q24G41ZE XLSRCHA006583" {
+    // The monitor advertises 60 Hz as preferred, so pin its native maximum.
+    mode "2560x1440@240.002"
+    scale 1
+    focus-at-startup
 }
 
 
