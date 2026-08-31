@@ -249,6 +249,8 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
+    // Keep region capture reachable on keyboards without a dedicated Print key.
+    Mod+Shift+S hotkey-overlay-title="Screenshot: Select Area" { screenshot; }
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
