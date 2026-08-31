@@ -41,6 +41,15 @@
     networkmanager-openconnect
   ];
 
+  # NetworkManager's shared Wi-Fi profile provides DHCP/DNS for hotspot clients.
+  networking.firewall.interfaces."wlp129s0f0" = {
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 67 ];
+  };
+
+  # Allow the wired connection to be forwarded to the Wi-Fi hotspot.
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
   time.timeZone = "Asia/Shanghai";
 
   services.libinput.enable = true;
