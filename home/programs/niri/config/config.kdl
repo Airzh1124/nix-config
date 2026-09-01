@@ -56,7 +56,7 @@ output "eDP-1" {
 output "PNP(AOC) Q24G41ZE XLSRCHA006583" {
     // The monitor advertises 60 Hz as preferred, so pin its native maximum.
     mode "2560x1440@240.002"
-    scale 1
+    scale 1.2
     focus-at-startup
 }
 
