@@ -49,6 +49,15 @@ start = ["workspaces"]
 end = ["tray", "notifications", "ram", "battery", "session"]
 scale = 1.25
 
+# Keep the bar visible on the desk monitor; the default above applies to eDP-1.
+[bar.default.monitor.dp3]
+match = "DP-3"
+auto_hide = false
+reserve_space = true
+margin_ends = 0
+margin_edge = 0
+radius = 0
+
 [control_center]
 width = 900
 
