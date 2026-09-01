@@ -9,8 +9,7 @@ enabled = ["cleboost/hotspot"]
 
 [location]
 auto_locate = false
-# Change the address to "Hong Kong" when moving there.
-address = "Shanghai"
+address = "Hong Kong"
 
 [shell.screenshot]
 copy_to_clipboard = true
