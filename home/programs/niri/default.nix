@@ -32,7 +32,7 @@
               criteria = "PNP(AOC) Q24G41ZE XLSRCHA006583";
               status = "enable";
               mode = "2560x1440@240.002Hz";
-              scale = 1.0;
+              scale = 1.2;
             }
           ];
         };
