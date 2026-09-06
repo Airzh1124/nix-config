@@ -28,6 +28,8 @@
     # The package ships its own D-Bus-activatable user service; Fcitx5 addon
     # discovery is configured separately in the system input-method wrapper.
     inputs.fcitx5-vinput.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Doubao IME streams Opus frames and loads this library at runtime.
+    libopus
 
     # Shell navigation and search
     fd
