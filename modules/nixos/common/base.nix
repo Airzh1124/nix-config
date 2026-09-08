@@ -58,7 +58,9 @@
     vim
     wget
     curl
+    # ocproxy exposes HKUVPN as a userspace SOCKS proxy without changing host routes.
     openconnect
+    ocproxy
     brightnessctl
   ];
 
