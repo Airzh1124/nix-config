@@ -12,3 +12,8 @@ user. Do not create the commit unless the user explicitly asks you to.
   with a lowercase letter and without a trailing period.
 - Mark a breaking change with `<type>(<scope>)!:` and add a
   `BREAKING CHANGE:` footer when an explanation is needed.
+
+## Environment                                                                                      
+                                                                                                   
+Operating system: NixOS                                                                           
+Shell: fish
