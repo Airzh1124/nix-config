@@ -20,6 +20,9 @@
   # 该模块会一并启用 udisks2、FUSE、D-Bus 与 MTP 支持。
   services.gvfs.enable = true;
 
+  # Nautilus 启动时会连接 Tracker/LocalSearch；启用服务避免连接超时。
+  services.gnome.localsearch.enable = true;
+
   # Niri 不是完整桌面环境，所以需要补 portal。
   # gtk: 基础 fallback portal / 文件选择器
   # gnome: Niri 官方文档说明 screencasting 需要它
