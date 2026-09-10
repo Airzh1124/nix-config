@@ -16,13 +16,41 @@
           return 1
         end
 
-        openconnect \
-          --protocol=anyconnect \
-          --no-dtls \
-          --script-tun \
-          --script='ocproxy -D 1080' \
-          --user="$HKU_USER" \
-          vpn2fa.hku.hk
+        env HKU_USER="$HKU_USER" expect -c '
+          set timeout -1
+          if {[catch {exec secret-tool lookup service hkuvpn user $env(HKU_USER)} password]} {
+            puts stderr "No HKUVPN password found in the keyring."
+            puts stderr "Store it with: secret-tool store --label=HKUVPN service hkuvpn user $env(HKU_USER)"
+            exit 1
+          }
+
+          spawn openconnect \
+            --protocol=anyconnect \
+            --no-dtls \
+            --script-tun \
+            --script "ocproxy -D 1080" \
+            --user $env(HKU_USER) \
+            vpn2fa.hku.hk
+          expect {
+            -nocase "Password:" {
+              send -- "$password\r"
+              unset password
+            }
+            eof {
+              set status [wait]
+              exit [lindex $status 3]
+            }
+          }
+          expect {
+            -nocase "Response:" { interact }
+            eof {
+              set status [wait]
+              exit [lindex $status 3]
+            }
+          }
+          set status [wait]
+          exit [lindex $status 3]
+        '
       '';
     };
   };

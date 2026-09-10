@@ -58,9 +58,11 @@
     vim
     wget
     curl
-    # ocproxy exposes HKUVPN as a userspace SOCKS proxy without changing host routes.
+    # Keep HKUVPN in userspace and load its password from the desktop keyring.
     openconnect
     ocproxy
+    expect
+    libsecret
     brightnessctl
   ];
 
