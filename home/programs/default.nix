@@ -16,6 +16,7 @@
     ./noctalia
     ./obs.nix
     ./obsidian.nix
+    ./ollama.nix
     ./rime
     ./swayidle.nix
     ./swaylock.nix

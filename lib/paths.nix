@@ -9,6 +9,7 @@ rec {
     inherit homeDirectory;
     nixConfigDirectory = "${homeDirectory}/nix-config";
     niriConfigDirectory = "${nixConfigDirectory}/home/programs/niri/config";
+    ollamaModelsDirectory = "${homeDirectory}/models/ollama";
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
   };
 
