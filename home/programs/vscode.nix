@@ -1,16 +1,18 @@
 { lib, pkgs, ... }:
 
-# 尝试解决 vscode 1需要手动配置 gnome-libsecret 的问题
+# Supply NixOS-specific runtime integration without making VS Code settings read-only.
 # https://code.visualstudio.com/docs/configure/settings-sync#_recommended-configure-the-keyring-to-use-with-vs-code
 let
-  vscodeWithLibsecret = pkgs.symlinkJoin {
-    name = "vscode-with-libsecret";
+  wrappedVscode = pkgs.symlinkJoin {
+    name = "vscode-wrapped";
     paths = [ pkgs.vscode ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
 
     postBuild = ''
+      # Continue's bundled sqlite3 binding needs libstdc++ on NixOS.
       wrapProgram $out/bin/code \
-        --add-flags "--password-store=gnome-libsecret"
+        --add-flags "--password-store=gnome-libsecret" \
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ]}
     '';
 
     meta.mainProgram = "code";
@@ -21,7 +23,7 @@ in
   # provide language runtimes such as Python and Jupyter kernels.
   programs.vscode = {
     enable = true;
-    package = vscodeWithLibsecret;
+    package = wrappedVscode;
 
     # Keep the Stylix theme extension, but leave settings.json writable so VS Code
     # and Settings Sync can manage theme selection, fonts, and editor preferences.
