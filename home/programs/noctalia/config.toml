@@ -85,8 +85,8 @@ keyboard_layout = false
 
 [system.monitor]
 enabled = true  
-# Keep GPU polling infrequent and avoid unnecessarily waking the discrete GPU.
-gpu_poll_seconds = 5.0
+# Show GPU usage promptly when the Control Center is opened.
+gpu_poll_seconds = 1.0
 
 # highlighting
 cpu_usage_activity_threshold = 50     # %
