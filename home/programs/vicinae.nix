@@ -7,6 +7,7 @@
     enable = true;
 
     settings = {
+      tray.enabled = false;
       close_on_focus_loss = true;
       consider_preedit = true;
       pop_to_root_on_close = true;
