@@ -14,5 +14,8 @@
       # Hide the window decorations (title-bar and window borders)
       hide_window_decorations = "yes";
     };
+    keybindings = {
+      "ctrl+shift+enter" = "launch --cwd=current";
+    };
   };
 }
