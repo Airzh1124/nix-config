@@ -21,13 +21,17 @@ let
     (extension "darkreader" "addon@darkreader.org")
   ];
 
+  unwrapped = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped;
+
+  # wrapFirefox selects the FFmpeg ABI from the browser version, but Zen's
+  # release version is unrelated; Zen 1.22.2b uses Firefox 156 and FFmpeg 9.
   browser = pkgs.wrapFirefox
-    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped.overrideAttrs (old: {
-      passthru = (old.passthru or { }) // {
-        withFFmpeg = true;
-      };
-    }))
+    (unwrapped // {
+      version = "156.0";
+      withFFmpeg = true;
+    })
     {
+      version = unwrapped.version;
       extraPrefs = lib.concatLines (
         lib.mapAttrsToList
           (name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});'')
