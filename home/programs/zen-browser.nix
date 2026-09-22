@@ -22,7 +22,11 @@ let
   ];
 
   browser = pkgs.wrapFirefox
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped.overrideAttrs (old: {
+      passthru = (old.passthru or { }) // {
+        withFFmpeg = true;
+      };
+    }))
     {
       extraPrefs = lib.concatLines (
         lib.mapAttrsToList
