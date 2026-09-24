@@ -20,3 +20,10 @@ patch:
         Shift_R: noop
         Control_L: noop
         Control_R: noop
+
+    # Commit the literal composition (for example, "nihao") instead of the
+    # first candidate when pressing Enter.
+    editor:
+      bindings:
+        Return: commit_raw_input
+        KP_Enter: commit_raw_input
