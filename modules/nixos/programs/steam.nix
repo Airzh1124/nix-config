@@ -14,11 +14,10 @@ in
   programs.steam = {
     enable = true;
 
-    # Apply PRIME offload only in Hybrid mode. In the dedicated-GPU
-    # specialisation NVIDIA is already the primary GPU, so NVIDIA-G0 does not
-    # represent an offload provider and Steam should use the unwrapped package.
+    # Apply PRIME offload only in Hybrid mode. Dedicated mode uses NVIDIA
+    # directly, while integrated mode has no NVIDIA provider at all.
     package =
-      if config.hardware.nvidia.prime.offload.enable then
+      if config.hardware.nvidia.enabled && config.hardware.nvidia.prime.offload.enable then
         pkgs.steam.override {
           extraEnv = nvidiaOffloadEnvironment;
         }

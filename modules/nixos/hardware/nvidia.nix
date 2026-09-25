@@ -22,22 +22,39 @@
     nvidiaPersistenced = true;
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
+  };
 
-    # Hybrid/Standard mode keeps the desktop on Intel and wakes NVIDIA for
+  # The main configuration is dedicated-GPU mode: NVIDIA drives the internal
+  # panel directly, so PRIME offload stays disabled.
+  specialisation = {
+    # Hybrid mode keeps the desktop on Intel and wakes NVIDIA only for
     # explicitly offloaded applications such as Steam.
-    prime = {
+    nvidia-hybrid.configuration.hardware.nvidia.prime = {
       offload.enable = true;
       offload.enableOffloadCmd = true;
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:2:0:0";
     };
-  };
 
-  # The dedicated-GPU boot entry must be paired with gpu_mux_mode=0 while
-  # dgpu_disable remains 0. NVIDIA then drives the panel directly, so PRIME
-  # offload and its wrapper are both disabled for this specialisation.
-  specialisation.nvidia-dgpu.configuration = {
-    hardware.nvidia.prime.offload.enable = lib.mkForce false;
-    hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false;
+    # Integrated mode physically disables the dGPU. Keep the matching boot
+    # entry free of every NVIDIA module and service so the driver never probes
+    # a device which the firmware has powered off.
+    intel-igpu.configuration = {
+      services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
+      boot.blacklistedKernelModules = [
+        "nvidia"
+        "nvidia_drm"
+        "nvidia_modeset"
+        "nvidia_uvm"
+      ];
+      hardware.nvidia = {
+        modesetting.enable = lib.mkForce false;
+        nvidiaSettings = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce false;
+        powerManagement.enable = lib.mkForce false;
+        prime.offload.enable = lib.mkForce false;
+        prime.offload.enableOffloadCmd = lib.mkForce false;
+      };
+    };
   };
 }

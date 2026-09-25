@@ -1,12 +1,74 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
+let
+  gpuMode = pkgs.writeShellApplication {
+    name = "rog-gpu-mode";
+    runtimeInputs = [
+      config.services.asusd.package
+      pkgs.systemd
+    ];
+    text = ''
+      usage() {
+        echo "usage: rog-gpu-mode {dedicated|hybrid|integrated}"
+      }
+
+      system_profile=/nix/var/nix/profiles/system
+
+      case "''${1:-}" in
+        dedicated)
+          target="$system_profile"
+          settings=(dgpu_disable 0 gpu_mux_mode 0)
+          ;;
+        hybrid)
+          target="$system_profile/specialisation/nvidia-hybrid"
+          settings=(dgpu_disable 0 gpu_mux_mode 1)
+          ;;
+        integrated)
+          target="$system_profile/specialisation/intel-igpu"
+          settings=(gpu_mux_mode 1 dgpu_disable 1)
+          ;;
+        -h|--help)
+          usage
+          exit 0
+          ;;
+        *)
+          usage >&2
+          exit 2
+          ;;
+      esac
+
+      if (( EUID != 0 )); then
+        echo "rog-gpu-mode must run as root" >&2
+        exit 1
+      fi
+
+      switch="$target/bin/switch-to-configuration"
+      if [[ ! -x "$switch" ]]; then
+        echo "GPU boot profile is unavailable: $target" >&2
+        exit 1
+      fi
+
+      asusctl armoury set "''${settings[0]}" "''${settings[1]}"
+      asusctl armoury set "''${settings[2]}" "''${settings[3]}"
+      "$switch" boot
+      systemctl reboot
+    '';
+  };
+in
 {
   services.asusd.enable = true;
 
   # asus-shutdown waits for a real shutdown request and otherwise ignores
   # SIGTERM, which makes every NixOS switch leave it stuck for 90 seconds.
   # Keep its normal 45-second graceful window, then let systemd clean it up.
-  systemd.services.asus-shutdown.serviceConfig.SendSIGKILL = true;
+  systemd.services.asus-shutdown = {
+    path = [ pkgs.kmod ];
+    serviceConfig.SendSIGKILL = true;
+  };
+
+  # Change the firmware attributes and matching boot profile as one operation;
+  # starting NVIDIA against a firmware-disabled dGPU wedges the driver.
+  environment.systemPackages = [ gpuMode ];
 
   # Noctalia reads the laptop battery state through UPower; without this
   # service its existing battery widget hides itself even when BAT0 exists.
