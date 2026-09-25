@@ -9,7 +9,11 @@ let
     ];
     text = ''
       usage() {
-        echo "usage: rog-gpu-mode {dedicated|hybrid|integrated}"
+        printf '%s\n' \
+          "usage: rog-gpu-mode {dedicated|hybrid|integrated}" \
+          "  dedicated   NVIDIA 独显直连" \
+          "  hybrid      Intel 显示，NVIDIA 按需渲染" \
+          "  integrated  仅使用 Intel，关闭 NVIDIA"
       }
 
       system_profile=/nix/var/nix/profiles/system
