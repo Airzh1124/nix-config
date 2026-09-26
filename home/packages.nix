@@ -19,7 +19,6 @@
 
     # Media playback and previews
     ffmpegthumbnailer
-    mpv
 
     # Communication
     telegram-desktop

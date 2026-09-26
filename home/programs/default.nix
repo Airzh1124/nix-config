@@ -12,6 +12,7 @@
     ./google-chrome.nix
     # ./hyprland
     ./kitty.nix
+    ./mpv.nix
     ./niri
     ./noctalia
     ./obs.nix
