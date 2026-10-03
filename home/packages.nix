@@ -77,6 +77,7 @@
 
     # Development tools
     gh
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
     nodejs
     python3
