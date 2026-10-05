@@ -77,7 +77,8 @@
 
     # Development tools
     gh
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+    # Used by the Claude Code status line script.
+    jq
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
     nodejs
     python3

@@ -3,6 +3,7 @@
 {
   imports = [
     ./btop.nix
+    ./claude-code
     ./codex
     ./document-readers.nix
     ./fastfetch.nix
