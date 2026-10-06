@@ -32,7 +32,8 @@
               criteria = "PNP(AOC) Q24G41ZE XLSRCHA006583";
               status = "enable";
               mode = "2560x1440@240.002Hz";
-              scale = 1.2;
+              # Keep in sync with the AOC output scale in niri's config.kdl.
+              scale = 1.5;
             }
           ];
         };
