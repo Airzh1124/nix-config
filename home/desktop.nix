@@ -42,13 +42,15 @@
       "application/xhtml+xml" = [ "zen.desktop" ];
       "application/x-extension-xhtml" = [ "zen.desktop" ];
       "application/x-extension-xht" = [ "zen.desktop" ];
-      "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-      "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
+      # 64Gram installs io.github.tdesktop_x64.TDesktop.desktop, not the official Telegram desktop entry.
+      "x-scheme-handler/tg" = [ "io.github.tdesktop_x64.TDesktop.desktop" ];
+      "x-scheme-handler/tonsite" = [ "io.github.tdesktop_x64.TDesktop.desktop" ];
     };
 
     associations.added = {
-      "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-      "x-scheme-handler/tonsite" = [ "org.telegram.desktop.desktop" ];
+      # 64Gram installs io.github.tdesktop_x64.TDesktop.desktop, not the official Telegram desktop entry.
+      "x-scheme-handler/tg" = [ "io.github.tdesktop_x64.TDesktop.desktop" ];
+      "x-scheme-handler/tonsite" = [ "io.github.tdesktop_x64.TDesktop.desktop" ];
     };
   };
 

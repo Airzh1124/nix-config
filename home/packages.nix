@@ -21,7 +21,9 @@
     ffmpegthumbnailer
 
     # Communication
-    telegram-desktop
+    # 64Gram replaces Telegram Desktop for its screenshot mode, which masks chat
+    # names while recording. Both install a `Telegram` binary, so keep only one.
+    _64gram
 
     # Input methods
     # The package ships its own D-Bus-activatable user service; Fcitx5 addon
