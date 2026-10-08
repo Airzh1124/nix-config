@@ -68,10 +68,7 @@
 
     # Debugging and inspection
     lsof
-    # Newer GCC warns about the `volatile` return type in ltrace's demangle test
-    # source, and dejagnu treats any compiler output as a failed compile, so its
-    # checkPhase fails; the other 230 tests pass and the binary itself is fine.
-    (ltrace.overrideAttrs { doCheck = false; })
+    ltrace
     strace
 
     # Hardware and network inspection
