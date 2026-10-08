@@ -58,6 +58,8 @@
     zstd
 
     # Security and crypto tools
+    # Provide bwrap for running commands in isolated user namespaces.
+    bubblewrap
     gnupg
 
     # System monitoring
