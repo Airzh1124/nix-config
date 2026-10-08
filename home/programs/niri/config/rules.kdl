@@ -41,6 +41,15 @@ window-rule {
 }
 
 
+// Hide chat windows from screencasts; direct monitor output stays visible.
+// Match the observed app IDs, including 64Gram's Wayland desktop ID.
+window-rule {
+    match app-id=r#"^wechat$"#
+    match app-id=r#"^io\.github\.tdesktop_x64\.TDesktop$"#
+
+    block-out-from "screencast"
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
