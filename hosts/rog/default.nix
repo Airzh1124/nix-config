@@ -23,6 +23,7 @@
     ../../modules/nixos/hardware/nvidia.nix
 
     #programs
+    ../../modules/nixos/programs/nix-ld.nix
     ../../modules/nixos/programs/steam.nix
 
     #services
