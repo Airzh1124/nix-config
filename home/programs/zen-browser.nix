@@ -24,12 +24,11 @@ let
   unwrapped = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped;
 
   # wrapFirefox selects the FFmpeg ABI from the browser version, but Zen's
-  # release version is unrelated; Zen 1.22.2b uses Firefox 156 and FFmpeg 9.
+  # release version is unrelated to Firefox's. Present the Firefox base version
+  # (exposed by the flake via passthru, withFFmpeg is already set there too) so
+  # the version tracks flake updates instead of being hardcoded here.
   browser = pkgs.wrapFirefox
-    (unwrapped // {
-      version = "156.0";
-      withFFmpeg = true;
-    })
+    (unwrapped // { version = unwrapped.firefoxVersion; })
     {
       version = unwrapped.version;
       extraPrefs = lib.concatLines (
