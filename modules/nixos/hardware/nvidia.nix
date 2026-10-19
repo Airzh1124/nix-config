@@ -21,6 +21,9 @@
     nvidiaSettings = true;
     nvidiaPersistenced = true;
     powerManagement.enable = true;
+    # nvidia-powerd lifts the GPU power limit above the 65 W base (firmware
+    # allows up to 115 W TGP + 25 W Dynamic Boost on this laptop).
+    dynamicBoost.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
@@ -52,6 +55,7 @@
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce false;
         powerManagement.enable = lib.mkForce false;
+        dynamicBoost.enable = lib.mkForce false;
         prime.offload.enable = lib.mkForce false;
         prime.offload.enableOffloadCmd = lib.mkForce false;
       };
