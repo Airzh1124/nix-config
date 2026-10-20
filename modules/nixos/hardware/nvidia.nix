@@ -32,11 +32,21 @@
   specialisation = {
     # Hybrid mode keeps the desktop on Intel and wakes NVIDIA only for
     # explicitly offloaded applications such as Steam.
-    nvidia-hybrid.configuration.hardware.nvidia.prime = {
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:2:0:0";
+    nvidia-hybrid.configuration.hardware.nvidia = {
+      prime = {
+        offload.enable = true;
+        offload.enableOffloadCmd = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:2:0:0";
+      };
+
+      # nvidia-persistenced keeps the device open, which prevents the dGPU
+      # from ever entering runtime D3 and defeats the point of hybrid mode.
+      nvidiaPersistenced = lib.mkForce false;
+
+      # Let the driver power the idle dGPU down (RTD3). This requires PRIME
+      # offload, which is enabled above, and a Turing or newer GPU.
+      powerManagement.finegrained = true;
     };
 
     # Integrated mode physically disables the dGPU. Keep the matching boot
