@@ -11,6 +11,11 @@ enabled = ["cleboost/hotspot"]
 auto_locate = false
 address = "Hong Kong"
 
+[nightlight]
+# Follow the sunrise/sunset schedule derived from [location] automatically,
+# instead of requiring a manual toggle from the control center shortcut.
+enabled = true
+
 [shell.screenshot]
 copy_to_clipboard = true
 save_to_file = false
