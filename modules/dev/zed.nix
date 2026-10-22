@@ -73,25 +73,30 @@
       # sets the color theme, so the icon theme does not conflict with it.
       icon_theme = "Material Icon Theme";
 
-      # Like VS Code, show file icons on tabs, color tab titles by git status,
-      # and mark tabs with errors and warnings; all are off by default.
+      # Color tab titles by git status and mark tabs with errors and warnings;
+      # both are off by default.
       tabs = {
-        file_icons = true;
         git_status = true;
         show_diagnostics = "all";
       };
+
+      title_bar.show_user_picture = false;
 
       # Commands run in Zed's terminal (git commit, etc.) edit in Zed itself.
       terminal.env.EDITOR = "${lib.getExe pkgs.zed-editor} --wait";
 
       # Format like `nix fmt` (nixfmt-tree runs plain nixfmt, no --strict);
-      # nixd cannot pass formatter arguments, hence the external command.
+      # nixd cannot pass formatter arguments, hence the external command. "-"
+      # reads stdin; nixfmt warns that a bare invocation is deprecated.
       languages.Nix = {
         language_servers = [
           "nixd"
           "!nil"
         ];
-        formatter.external.command = lib.getExe pkgs.nixfmt;
+        formatter.external = {
+          command = lib.getExe pkgs.nixfmt;
+          arguments = [ "-" ];
+        };
         format_on_save = "on";
       };
 
