@@ -2,7 +2,6 @@
   lib,
   paths,
   pkgs,
-  username,
   ...
 }:
 
@@ -16,14 +15,10 @@ in
 
   services.greetd = {
     enable = true;
+    # No initial_session autologin: logging in through tuigreet hands the
+    # password to PAM, which unlocks GNOME Keyring in the same step. Autologin
+    # skipped that and left a keyring unlock prompt after reaching the desktop.
     settings = {
-      initial_session = {
-        # Scope the class to the graphical child; setting it globally would also
-        # override pam_systemd's manager class for user@.service.
-        command = "${lib.getExe' pkgs.coreutils "env"} XDG_SESSION_CLASS=user ${session}";
-        user = username;
-      };
-
       default_session = {
         command = lib.concatStringsSep " " [
           (lib.getExe pkgs.tuigreet)
@@ -31,6 +26,8 @@ in
           "--remember"
           "--remember-session"
           "--sessions /run/current-system/sw/share/wayland-sessions:/run/current-system/sw/share/xsessions"
+          # Scope the class to the graphical child; setting it globally would also
+          # override pam_systemd's manager class for user@.service.
           "--env XDG_SESSION_CLASS=user"
           "--cmd ${session}"
         ];
