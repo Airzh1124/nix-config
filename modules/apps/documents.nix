@@ -32,5 +32,8 @@
   hm.home.packages = with pkgs; [
     onlyoffice-desktopeditors
     poppler-utils
+    # Typst documents use this system-wide CLI rather than per-project devShells,
+    # so it is updated together with Zed's tinymist (see modules/dev/zed.nix).
+    typst
   ];
 }
