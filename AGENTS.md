@@ -21,7 +21,7 @@
 - Feature modules that need Home Manager's own `config` (e.g. `config.lib.file.mkOutOfStoreSymlink`, `config.xdg.dataHome`) use the function form `hm = { config, ... }: { ... };`. Flake inputs and `paths` come from the NixOS module arguments.
 - Use `config.hardware.nvidia.enabled` for CUDA-dependent choices so specialisations without the NVIDIA driver get non-CUDA builds.
 - Host-specific values (interface names, PCI bus IDs, monitors, audio node names) belong in `hosts/rog/`, never in shared modules.
-- `hosts/rog/default.nix` is the single list of enabled modules.
+- `hosts/rog/default.nix` imports every module under `modules/<category>/` automatically; a category directory may only contain modules (`.nix` files or directories with a `default.nix`). Keep supporting files (KDL, TOML, scripts) inside a module directory, and disable a feature by removing its module.
 - Plain utility packages without a related feature go in `modules/apps/packages.nix`, grouped by purpose.
 - When managing a package through Home Manager, inspect the module source first and avoid redundant settings whose defaults already match the intended behavior.
 - Avoid creating a separate file for a tiny program config when it clearly belongs with an existing related module.
