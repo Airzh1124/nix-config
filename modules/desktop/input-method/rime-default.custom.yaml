@@ -5,10 +5,16 @@ patch:
   __include: rime_ice_suggestion:/
   __patch:
     # Keep full Pinyin and Flypy under the same Rime input method; use the
-    # schema menu (F4 or Ctrl+`) to switch between them.
+    # schema menu (F4) to switch between them.
     schema_list:
       - schema: rime_ice
       - schema: double_pinyin_flypy
+
+    # Open the schema menu with F4 only. The upstream Ctrl+` shortcut would
+    # swallow the terminal toggle in Zed and VS Code. The slash path replaces
+    # only the hotkey list and keeps the rest of the switcher settings.
+    switcher/hotkeys:
+      - F4
 
     # Spell out the complete mapping because patching switch_key replaces the
     # upstream mapping rather than merging individual keys.
