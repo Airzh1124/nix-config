@@ -122,6 +122,13 @@
         format_on_save = "on";
       };
 
+      # Zed has no webview, so preview Typst in a browser: tinymist serves a
+      # live preview of the focused document at http://127.0.0.1:23635. It is
+      # read at server start, hence initialization_options rather than settings.
+      # tinymist re-focuses on hover/folding/semantic-token requests, not on tab
+      # switches, so hover over the new file to move the preview to it.
+      lsp.tinymist.initialization_options.preview.background.enabled = true;
+
       telemetry = {
         diagnostics = false;
         metrics = false;
