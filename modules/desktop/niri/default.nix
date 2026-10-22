@@ -70,7 +70,8 @@ in
     include "${paths.user.niriConfigDirectory}/config.kdl"
   '';
 
-  # greetd starts this file, so the login manager does not hard-code a compositor.
+  # greetd starts this file (paths.user.waylandSessionFile), so the login
+  # manager does not hard-code a compositor.
   hm.home.file.".wayland-session" = {
     source = lib.getExe' niri "niri-session";
     executable = true;

@@ -13,6 +13,8 @@ rec {
     niriConfigDirectory = "${nixConfigDirectory}/modules/desktop/niri/config";
     rimeCustomFile = "${nixConfigDirectory}/modules/desktop/input-method/rime-default.custom.yaml";
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
+    # The compositor module provides this executable; greetd starts it.
+    waylandSessionFile = "${homeDirectory}/.wayland-session";
   };
 
   # These Nix paths are evaluated from the repository and copied to the store as needed.

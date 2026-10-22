@@ -3,16 +3,51 @@
   lib,
   paths,
   pkgs,
+  username,
   ...
 }:
 
 let
   niri = lib.getExe config.programs.niri.package;
-  lock = "${lib.getExe pkgs.swaylock} -f";
+  swaylock = lib.getExe pkgs.swaylock;
+  lock = "${swaylock} -f";
+
+  # Marks the boot-time autologin session so only it gets locked at startup;
+  # $XDG_RUNTIME_DIR is wiped once all of the user's sessions end, and a later
+  # tuigreet login (which already asked for the password) finds no marker.
+  lockMarker = ''"$XDG_RUNTIME_DIR/lock-at-login"'';
+
+  autologinSession = pkgs.writeShellScript "autologin-wayland-session" ''
+    touch ${lockMarker}
+    exec ${paths.user.waylandSessionFile}
+  '';
+
+  lockAtLogin = pkgs.writeShellScript "lock-at-login" ''
+    if [ -e ${lockMarker} ]; then
+      rm ${lockMarker}
+      exec ${swaylock}
+    fi
+  '';
 in
 {
-  # swaylock authenticates through its own PAM service.
-  security.pam.services.swaylock = { };
+  # Boot straight into the desktop and lock it at once, so swaylock doubles as
+  # the login screen.
+  services.greetd.settings.initial_session = {
+    # Scope the class to the graphical child; setting it globally would also
+    # override pam_systemd's manager class for user@.service.
+    command = "${lib.getExe' pkgs.coreutils "env"} XDG_SESSION_CLASS=user ${autologinSession}";
+    user = username;
+  };
+
+  # niri implements ext-session-lock, so the screen stays locked even if
+  # swaylock crashes. mkBefore spawns it ahead of the shell and launcher.
+  hm.xdg.configFile."niri/config.kdl".text = lib.mkBefore ''
+    spawn-at-startup "${lockAtLogin}"
+  '';
+
+  # gkr-pam's auth step unlocks the already-running keyring with the password
+  # typed into swaylock; autologin itself starts the keyring locked.
+  security.pam.services.swaylock.enableGnomeKeyring = true;
 
   hm.programs.swaylock = {
     enable = true;
