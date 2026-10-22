@@ -98,10 +98,6 @@ in
   # starting NVIDIA against a firmware-disabled dGPU wedges the driver.
   environment.systemPackages = [ gpuMode ];
 
-  # Noctalia reads the laptop battery state through UPower; without this
-  # service its existing battery widget hides itself even when BAT0 exists.
-  services.upower.enable = true;
-
   # Keep detailed PM messages enabled for the next suspend cycle so an
   # unexpected s2idle wakeup can be traced back to its IRQ or device.
   systemd.services.suspend-diagnostics = {

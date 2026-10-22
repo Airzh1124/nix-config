@@ -62,9 +62,6 @@ in
   # 只放 Niri 必需或强相关的系统级 runtime。
   environment.systemPackages = with pkgs; [
     xwayland-satellite
-    # Kept from the old base module; the backlight keys go through
-    # `noctalia msg brightness-*`. TODO(rewrite): drop if Noctalia doesn't need it.
-    brightnessctl
   ];
 
   # The KDL files stay in the repository so niri's live reload picks up edits
