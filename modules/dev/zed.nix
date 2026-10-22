@@ -36,8 +36,13 @@
       # Nix owns the package; Zed's self-updater has nothing to update.
       auto_update = false;
 
-      # niri draws no title bars, so ask for server-side decorations; Zed then
-      # drops its own window controls and rounded corners.
+      # Match VS Code's 18px editor text. Stylix derives 16px from its terminal
+      # size, which kitty shares, so override Zed alone instead.
+      buffer_font_size = lib.mkForce 18;
+
+      # Let niri own the window frame: Zed then drops its window controls and
+      # rounded corners. niri only offers server-side decorations while its
+      # prefer-no-csd option is on; otherwise Zed falls back to drawing its own.
       window_decorations = "server";
 
       autosave = "on_focus_change";

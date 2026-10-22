@@ -27,7 +27,9 @@ include "rules.kdl"
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+// Enabled so apps that support it (Zed, Qt, Firefox-based) drop their own title
+// bars and rounded corners; libadwaita/GTK4 apps keep their CSD regardless.
+prefer-no-csd
 
 
 
