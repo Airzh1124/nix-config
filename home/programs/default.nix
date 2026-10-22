@@ -27,6 +27,7 @@
     ./vscode.nix
     ./wechat.nix
     ./yazi
+    ./zed.nix
     ./zen-browser.nix
   ];
 
