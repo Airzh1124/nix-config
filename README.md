@@ -11,7 +11,7 @@ Manager side of one feature, using `hm.*` as an alias for
 
 - `flake.nix`: flake inputs, the formatter, and the `nixosConfigurations.rog` output
 - `hosts/rog`: imports every module under `modules/`, plus host-specific hardware, audio,
-  display (niri outputs, kanshi), and networking settings
+  display (niri outputs), and networking settings
 - `modules/core`: Nix, boot, system defaults, the user account, Home Manager wiring
 - `modules/hardware`: NVIDIA (with GPU-mode specialisations), ASUS ROG, audio,
   Bluetooth, graphics, and peripherals

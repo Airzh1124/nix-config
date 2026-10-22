@@ -8,7 +8,7 @@ rec {
   user = rec {
     inherit homeDirectory;
     nixConfigDirectory = "${homeDirectory}/nix-config";
-    # Host-specific files that live configs (niri, kanshi) include at runtime.
+    # Host-specific files that live configs (e.g. niri outputs) include at runtime.
     hostDirectory = "${nixConfigDirectory}/hosts/${hostname}";
     niriConfigDirectory = "${nixConfigDirectory}/modules/desktop/niri/config";
     rimeCustomFile = "${nixConfigDirectory}/modules/desktop/input-method/rime-default.custom.yaml";

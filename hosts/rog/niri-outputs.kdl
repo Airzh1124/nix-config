@@ -2,8 +2,8 @@
 // https://niri-wm.github.io/niri/Configuration:-Outputs
 
 output "eDP-1" {
-    // Keep a usable fallback when the external monitor is disconnected;
-    // kanshi disables this output only while the desk monitor is present.
+    // niri turns this panel off while the lid is closed and the desk
+    // monitor is connected.
     mode "2560x1600@240.000"
     scale 1.5
 }
