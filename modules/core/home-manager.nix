@@ -2,7 +2,6 @@
   inputs,
   lib,
   username,
-  hostname,
   paths,
   ...
 }:
@@ -16,21 +15,12 @@
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
   ];
 
+  # Feature modules reach flake inputs and paths through the NixOS module
+  # arguments, so Home Manager needs no extraSpecialArgs.
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {
-      inherit
-        inputs
-        username
-        hostname
-        paths
-        ;
-    };
   };
-
-  # TODO(rewrite): drop once every home/ module has moved into a feature module.
-  hm.imports = [ ../../home ];
 
   hm.home = {
     inherit username;

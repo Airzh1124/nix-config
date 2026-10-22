@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.yazi = {
+  hm.programs.yazi = {
     enable = true;
     enableFishIntegration = true;
 
@@ -18,7 +18,7 @@
   };
 
   # Mirror Yazi's configuration tree so related files stay together as it grows.
-  xdg.configFile."yazi" = {
+  hm.xdg.configFile."yazi" = {
     recursive = true;
     source = ./config;
   };

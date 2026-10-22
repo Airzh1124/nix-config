@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  programs.fish = {
+  hm.programs.fish = {
     enable = true;
     interactiveShellInit = lib.mkAfter ''
       set fish_greeting
@@ -9,7 +9,7 @@
     '';
   };
 
-  programs.direnv = {
+  hm.programs.direnv = {
     enable = true;
     # Load project flake devShells in Fish; each project's .envrc still needs
     # an explicit `direnv allow` once before its code may affect this shell.

@@ -2,7 +2,7 @@
 
 # Zed as the fast daily editor; VS Code stays around for Jupyter notebooks.
 {
-  programs.zed-editor = {
+  hm.programs.zed-editor = {
     enable = true;
 
     # Install language support through Zed's extension system. Python needs no

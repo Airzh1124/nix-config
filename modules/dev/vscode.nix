@@ -5,7 +5,7 @@
 {
   # Let VS Code and Settings Sync manage ordinary extensions; project devShells
   # provide language runtimes such as Python and Jupyter kernels.
-  programs.vscode = {
+  hm.programs.vscode = {
     enable = true;
 
     # VS Code cannot detect the keyring under niri, so select it explicitly for

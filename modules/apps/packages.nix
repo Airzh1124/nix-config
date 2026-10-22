@@ -1,24 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  # Packages without meaningful Home Manager modules live here.
-  # Program-specific configuration belongs in home/programs.
-  home.packages = with pkgs; [
-    # File management
-    nautilus
+  # Plain utilities with no related feature module, grouped by purpose.
+  hm.home.packages = with pkgs; [
+    # Clipboard
     wl-clipboard
-
-    # Office and document tools
-    onlyoffice-desktopeditors
-    poppler-utils
-
-    # Image editing and conversion
-    imagemagick
-    pinta
-
-
-    # Media playback and previews
-    ffmpegthumbnailer
 
     # Communication
     # 64Gram replaces Telegram Desktop for its screenshot mode, which masks chat
@@ -55,12 +41,6 @@
     bubblewrap
     gnupg
 
-    # System monitoring
-    iftop
-    iotop
-    lm_sensors
-    sysstat
-
     # Debugging and inspection
     lsof
     ltrace
@@ -72,10 +52,7 @@
     pciutils
     usbutils
 
-    # Development tools
-    # Used by the Claude Code status line script.
-    jq
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
+    # Language runtimes for ad-hoc scripts; projects use devShells.
     nodejs
     python3
     uv

@@ -34,4 +34,8 @@ in
 
   # Games opt in with the Steam launch option `gamemoderun %command%`.
   programs.gamemode.enable = true;
+
+  # Keep the overlay opt-in so normal desktop applications remain unaffected;
+  # use `mangohud gamemoderun %command%` in a game's Steam launch options.
+  hm.programs.mangohud.enable = true;
 }

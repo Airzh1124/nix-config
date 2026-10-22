@@ -56,7 +56,7 @@ let
   };
 in
 {
-  home.packages = [
+  hm.home.packages = [
     # Wrap the final AppImage launcher because overriding its fixup phase does
     # not affect the bubblewrap executable produced by appimageTools.
     (pkgs.symlinkJoin {

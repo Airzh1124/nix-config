@@ -39,18 +39,33 @@ in
     (modules + /hardware/razer-viper-v4-pro.nix)
 
     # Apps
+    (modules + /apps/browsers.nix)
+    (modules + /apps/documents.nix)
+    (modules + /apps/gaming.nix)
     (modules + /apps/hkuvpn.nix)
+    (modules + /apps/media.nix)
+    (modules + /apps/monitoring.nix)
+    (modules + /apps/nautilus.nix)
+    (modules + /apps/ollama.nix)
+    (modules + /apps/packages.nix)
+    (modules + /apps/wechat.nix)
 
-    # Programs
-    (modules + /nixos/programs/nix-ld.nix)
-    (modules + /nixos/programs/steam.nix)
+    # Development
+    (modules + /dev/git.nix)
+    (modules + /dev/kitty.nix)
+    (modules + /dev/llm-agents)
+    (modules + /dev/nix-ld.nix)
+    (modules + /dev/shell.nix)
+    (modules + /dev/vscode.nix)
+    (modules + /dev/yazi)
+    (modules + /dev/zed.nix)
 
     # Services
-    (modules + /nixos/services/mihomo.nix)
-    (modules + /nixos/services/openssh.nix)
-    (modules + /nixos/services/sunshine.nix)
-    (modules + /nixos/services/syncthing.nix)
-    (modules + /nixos/services/tailscale.nix)
+    (modules + /services/mihomo.nix)
+    (modules + /services/openssh.nix)
+    (modules + /services/sunshine.nix)
+    (modules + /services/syncthing.nix)
+    (modules + /services/tailscale.nix)
   ];
 
   networking.hostName = "rog";
