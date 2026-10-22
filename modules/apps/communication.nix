@@ -57,9 +57,8 @@ let
 in
 {
   hm.home.packages = [
-    # 64Gram replaces Telegram Desktop for its screenshot mode, which masks chat
-    # names while recording. Both install a `Telegram` binary, so keep only one.
-    pkgs._64gram
+    # Telegram client; registers the tg:// and tonsite:// handlers itself.
+    pkgs.ayugram-desktop
 
     # Wrap the final AppImage launcher because overriding its fixup phase does
     # not affect the bubblewrap executable produced by appimageTools.
