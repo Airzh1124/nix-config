@@ -9,4 +9,7 @@
   services.gnome.localsearch.enable = true;
 
   hm.home.packages = [ pkgs.nautilus ];
+
+  # VS Code, kitty, yazi and zathura-cb also claim directories.
+  hm.xdg.mimeApps.defaultApplications."inode/directory" = [ "org.gnome.Nautilus.desktop" ];
 }

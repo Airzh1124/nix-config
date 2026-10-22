@@ -19,6 +19,16 @@
     '';
   };
 
+  # Chrome also claims these. Not using the flake's setAsDefaultBrowser: it
+  # also takes text/plain and application/json, which should stay on editors.
+  # The flake installs the beta build as zen-beta.desktop, not zen.desktop.
+  hm.xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "zen-beta.desktop" ];
+    "application/xhtml+xml" = [ "zen-beta.desktop" ];
+    "x-scheme-handler/http" = [ "zen-beta.desktop" ];
+    "x-scheme-handler/https" = [ "zen-beta.desktop" ];
+  };
+
   hm.programs.google-chrome = {
     enable = true;
 

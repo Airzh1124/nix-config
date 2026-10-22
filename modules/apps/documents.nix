@@ -22,8 +22,14 @@
     };
   };
 
+  # Chrome and ONLYOFFICE also claim PDF and EPUB; Office formats need no entry
+  # because ONLYOFFICE is their only handler.
+  hm.xdg.mimeApps.defaultApplications = {
+    "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+    "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
+  };
+
   hm.home.packages = with pkgs; [
-    # Office formats open here by default (see default-apps.nix).
     onlyoffice-desktopeditors
     poppler-utils
   ];

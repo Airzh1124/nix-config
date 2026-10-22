@@ -22,6 +22,13 @@
     useUserPackages = true;
   };
 
+  # Feature modules add their own entries, only for MIME types that more than
+  # one installed application claims.
+  hm.xdg.mimeApps.enable = true;
+  # xdg.mimeApps manages both locations; replace any copy apps wrote there.
+  hm.xdg.configFile."mimeapps.list".force = true;
+  hm.xdg.dataFile."applications/mimeapps.list".force = true;
+
   hm.home = {
     inherit username;
     homeDirectory = paths.user.homeDirectory;
