@@ -6,18 +6,11 @@
     # Clipboard
     wl-clipboard
 
-    # Communication
-    # 64Gram replaces Telegram Desktop for its screenshot mode, which masks chat
-    # names while recording. Both install a `Telegram` binary, so keep only one.
-    _64gram
-
     # Shell navigation and search
     fd
-    fzf
     ripgrep
     tree
     which
-    zoxide
 
     # General command-line utilities
     cowsay
@@ -40,17 +33,6 @@
     # Provide bwrap for running commands in isolated user namespaces.
     bubblewrap
     gnupg
-
-    # Debugging and inspection
-    lsof
-    ltrace
-    strace
-
-    # Hardware and network inspection
-    ethtool
-    iw
-    pciutils
-    usbutils
 
     # Language runtimes for ad-hoc scripts; projects use devShells.
     nodejs
