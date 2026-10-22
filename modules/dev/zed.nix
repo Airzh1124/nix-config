@@ -2,6 +2,10 @@
 
 # Zed as the fast daily editor; VS Code stays around for Jupyter notebooks.
 {
+  # VS Code, vim and ONLYOFFICE also claim plain text; without an entry the
+  # desktop database happened to pick VS Code.
+  hm.xdg.mimeApps.defaultApplications."text/plain" = [ "dev.zed.Zed.desktop" ];
+
   hm.programs.zed-editor = {
     enable = true;
 
