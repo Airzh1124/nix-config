@@ -26,8 +26,10 @@ window-rule {
 
 // Zen keeps its client-side shadow extents until the first focus change unless
 // it is told that the window is tiled, shrinking the initial visible geometry.
+// The community Zen flake's beta build reports app-id "zen-beta" (the previous
+// flake used "zen"), so match both.
 window-rule {
-  match app-id=r#"^zen$"#
+  match app-id=r#"^zen(-beta)?$"#
   open-maximized true
   tiled-state true
 }
