@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./audio.nix
     ./networking.nix
 
     # Core
@@ -24,11 +25,13 @@ in
     (modules + /nixos/desktop/stylix.nix)
 
     # Hardware
-    (modules + /nixos/hardware/asus-rog.nix)
-    (modules + /nixos/hardware/atk-rs6-air.nix)
-    (modules + /nixos/hardware/razer-viper-v4-pro.nix)
-    (modules + /nixos/hardware/graphics.nix)
-    (modules + /nixos/hardware/nvidia.nix)
+    (modules + /hardware/asus-rog.nix)
+    (modules + /hardware/atk-rs6-air.nix)
+    (modules + /hardware/audio.nix)
+    (modules + /hardware/bluetooth.nix)
+    (modules + /hardware/intel-graphics.nix)
+    (modules + /hardware/nvidia.nix)
+    (modules + /hardware/razer-viper-v4-pro.nix)
 
     # Apps
     (modules + /apps/hkuvpn.nix)
@@ -38,8 +41,6 @@ in
     (modules + /nixos/programs/steam.nix)
 
     # Services
-    (modules + /nixos/services/audio.nix)
-    (modules + /nixos/services/bluetooth.nix)
     (modules + /nixos/services/mihomo.nix)
     (modules + /nixos/services/openssh.nix)
     (modules + /nixos/services/sunshine.nix)
@@ -48,4 +49,10 @@ in
   ];
 
   networking.hostName = "rog";
+
+  # PRIME offload in the nvidia-hybrid specialisation (see `lspci -D`).
+  specialisation.nvidia-hybrid.configuration.hardware.nvidia.prime = {
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:2:0:0";
+  };
 }

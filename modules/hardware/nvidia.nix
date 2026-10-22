@@ -15,6 +15,15 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # CUDA-enabled packages (btop, OBS, Ollama) are not built by the main NixOS
+  # Hydra cache; priority 70 keeps it behind cache.nixos.org.
+  nix.settings = {
+    extra-substituters = [ "https://cache.nixos-cuda.org?priority=70" ];
+    extra-trusted-public-keys = [
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
@@ -36,8 +45,7 @@
       prime = {
         offload.enable = true;
         offload.enableOffloadCmd = true;
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:2:0:0";
+        # Bus IDs are host-specific and set in hosts/<host>.
       };
 
       # nvidia-persistenced keeps the device open, which prevents the dGPU
