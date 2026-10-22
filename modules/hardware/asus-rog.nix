@@ -6,7 +6,12 @@ let
   # library directory, so those fields stay empty. Wrap only this binary
   # (symlinkJoin avoids rebuilding asusctl) and remove this once nixpkgs does.
   asusctl = pkgs.symlinkJoin {
-    inherit (pkgs.asusctl) name pname version meta;
+    inherit (pkgs.asusctl)
+      name
+      pname
+      version
+      meta
+      ;
     paths = [ pkgs.asusctl ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''

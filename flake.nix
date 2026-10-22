@@ -41,7 +41,8 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, ... }:
+  outputs =
+    inputs@{ nixpkgs, ... }:
     let
       username = "han";
       hostname = "rog";
@@ -57,7 +58,12 @@
         inherit system;
 
         specialArgs = {
-          inherit inputs username hostname paths;
+          inherit
+            inputs
+            username
+            hostname
+            paths
+            ;
         };
 
         modules = [ ./hosts/rog ];
