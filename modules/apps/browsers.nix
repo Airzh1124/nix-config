@@ -3,6 +3,10 @@
 {
   hm.imports = [ inputs.zen-browser.homeModules.default ];
 
+  # Stylix's Zen target needs profileNames, which makes Home Manager own
+  # profiles.ini and the profile path; keep the existing profile unmanaged.
+  hm.stylix.targets.zen-browser.enable = false;
+
   hm.programs.zen-browser = {
     enable = true;
 
