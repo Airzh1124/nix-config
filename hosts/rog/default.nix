@@ -29,10 +29,4 @@ in
   ];
 
   networking.hostName = "rog";
-
-  # PRIME offload in the nvidia-hybrid specialisation (see `lspci -D`).
-  specialisation.nvidia-hybrid.configuration.hardware.nvidia.prime = {
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:2:0:0";
-  };
 }

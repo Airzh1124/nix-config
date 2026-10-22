@@ -11,8 +11,8 @@
   hm.programs.obs-studio = {
     enable = true;
 
-    # NVIDIA hardware acceleration; follow whether this configuration (or
-    # specialisation) loads the NVIDIA driver.
+    # NVIDIA hardware acceleration; follow whether this configuration loads
+    # the NVIDIA driver.
     package = pkgs.obs-studio.override {
       cudaSupport = config.hardware.nvidia.enabled;
     };

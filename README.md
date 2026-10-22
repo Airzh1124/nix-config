@@ -13,7 +13,7 @@ Manager side of one feature, using `hm.*` as an alias for
 - `hosts/rog`: imports every module under `modules/`, plus host-specific hardware, audio,
   display (niri outputs), and networking settings
 - `modules/core`: Nix, boot, system defaults, the user account, Home Manager wiring
-- `modules/hardware`: NVIDIA (with GPU-mode specialisations), ASUS ROG, audio,
+- `modules/hardware`: NVIDIA (dedicated-GPU mode), ASUS ROG, audio,
   Bluetooth, graphics, and peripherals
 - `modules/desktop`: Niri, Noctalia, Vicinae, input method, lock screen, greetd,
   theming, fonts, and default applications

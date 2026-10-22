@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   boot.blacklistedKernelModules = [ "nouveau" ];
@@ -13,6 +13,11 @@
     options nvidia NVreg_RegistryDwords=EnableBrightnessControl=1
   '';
 
+  # This laptop always runs in dedicated-GPU MUX mode: NVIDIA drives the
+  # internal panel directly. The Hybrid and integrated boot profiles were
+  # removed because each specialisation re-evaluates the whole system; do not
+  # switch the MUX or disable the dGPU in rog-control-center without adding a
+  # matching configuration back first.
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # CUDA-enabled packages (btop, OBS) are not built by the main NixOS
@@ -34,49 +39,5 @@
     # allows up to 115 W TGP + 25 W Dynamic Boost on this laptop).
     dynamicBoost.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
-  };
-
-  # The main configuration is dedicated-GPU mode: NVIDIA drives the internal
-  # panel directly, so PRIME offload stays disabled.
-  specialisation = {
-    # Hybrid mode keeps the desktop on Intel and wakes NVIDIA only for
-    # explicitly offloaded applications such as Steam.
-    nvidia-hybrid.configuration.hardware.nvidia = {
-      prime = {
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-        # Bus IDs are host-specific and set in hosts/<host>.
-      };
-
-      # nvidia-persistenced keeps the device open, which prevents the dGPU
-      # from ever entering runtime D3 and defeats the point of hybrid mode.
-      nvidiaPersistenced = lib.mkForce false;
-
-      # Let the driver power the idle dGPU down (RTD3). This requires PRIME
-      # offload, which is enabled above, and a Turing or newer GPU.
-      powerManagement.finegrained = true;
-    };
-
-    # Integrated mode physically disables the dGPU. Keep the matching boot
-    # entry free of every NVIDIA module and service so the driver never probes
-    # a device which the firmware has powered off.
-    intel-igpu.configuration = {
-      services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
-      boot.blacklistedKernelModules = [
-        "nvidia"
-        "nvidia_drm"
-        "nvidia_modeset"
-        "nvidia_uvm"
-      ];
-      hardware.nvidia = {
-        modesetting.enable = lib.mkForce false;
-        nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce false;
-        powerManagement.enable = lib.mkForce false;
-        dynamicBoost.enable = lib.mkForce false;
-        prime.offload.enable = lib.mkForce false;
-        prime.offload.enableOffloadCmd = lib.mkForce false;
-      };
-    };
   };
 }
