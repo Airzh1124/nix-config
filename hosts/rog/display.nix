@@ -7,6 +7,9 @@
   '';
 
   # Switch to the desk monitor when connected, and restore the laptop panel when unplugged.
+  # kanshi only toggles outputs on and off; modes and scales live solely in
+  # niri-outputs.kdl. kanshi sends no mode/scale for fields left unset, so niri
+  # keeps applying the ones from its config.
   hm.services.kanshi = {
     enable = true;
     settings = [
@@ -32,9 +35,6 @@
             {
               criteria = "PNP(AOC) Q24G41ZE XLSRCHA006583";
               status = "enable";
-              mode = "2560x1440@240.002Hz";
-              # Keep in sync with the AOC output scale in niri-outputs.kdl.
-              scale = 1.5;
             }
           ];
         };
