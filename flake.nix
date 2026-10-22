@@ -49,6 +49,10 @@
       paths = import ./lib/paths.nix { inherit username; };
     in
     {
+      # `nix fmt` formats the whole tree with nixfmt through treefmt; nixpkgs
+      # ships this wrapper, so it needs no extra flake input.
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
 

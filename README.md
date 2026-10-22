@@ -9,7 +9,8 @@ The desktop session currently uses Niri on Wayland.
 - `hosts/rog`: host entry point and hardware configuration
 - `modules/nixos`: reusable NixOS modules for desktop, hardware, services, and system settings
 - `home`: Home Manager configuration, program modules, and application configs
-- `users/han.nix`: system user configuration
+- `modules/core`: base system shared by every feature (nix, boot, user, Home Manager wiring)
+- `modules/apps`: feature modules that combine NixOS and Home Manager settings
 - `lib/paths.nix`: shared repository, home-directory, and asset paths
 - `assets`: wallpapers, avatar, and color scheme files
 

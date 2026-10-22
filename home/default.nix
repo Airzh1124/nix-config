@@ -1,13 +1,10 @@
-{ username, paths, ... }:
+{ ... }:
 
 {
+  # Identity and stateVersion live in modules/core/home-manager.nix.
   imports = [
     ./desktop.nix
     ./packages.nix
     ./programs
   ];
-
-  home.username = username;
-  home.homeDirectory = paths.user.homeDirectory;
-  home.stateVersion = "26.05";
 }

@@ -14,6 +14,6 @@
   };
 
   # Provides blueman-manager and D-Bus integration for pairing devices from
-  # Hyprland sessions without requiring a full desktop environment.
+  # Niri sessions without requiring a full desktop environment.
   services.blueman.enable = true;
 }

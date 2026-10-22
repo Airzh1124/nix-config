@@ -61,5 +61,10 @@
   # 不放 kitty / fuzzel / mako / swayidle / screenshot / Noctalia。
   environment.systemPackages = with pkgs; [
     xwayland-satellite
+    # Kept from the old base module; the backlight keys go through
+    # `noctalia msg brightness-*`. TODO(rewrite): drop if Noctalia doesn't need it.
+    brightnessctl
   ];
+
+  services.libinput.enable = true;
 }
