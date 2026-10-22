@@ -1,12 +1,13 @@
 { paths, ... }:
 
 {
-  xdg.configFile."niri/config.kdl".text = ''
-    include "${paths.user.niriConfigDirectory}/config.kdl"
+  # Output modes and scales for this laptop and its desk monitor.
+  hm.xdg.configFile."niri/config.kdl".text = ''
+    include "${paths.user.hostDirectory}/niri-outputs.kdl"
   '';
 
   # Switch to the desk monitor when connected, and restore the laptop panel when unplugged.
-  services.kanshi = {
+  hm.services.kanshi = {
     enable = true;
     settings = [
       {
@@ -32,7 +33,7 @@
               criteria = "PNP(AOC) Q24G41ZE XLSRCHA006583";
               status = "enable";
               mode = "2560x1440@240.002Hz";
-              # Keep in sync with the AOC output scale in niri's config.kdl.
+              # Keep in sync with the AOC output scale in niri-outputs.kdl.
               scale = 1.5;
             }
           ];

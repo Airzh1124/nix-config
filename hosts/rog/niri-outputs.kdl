@@ -1,0 +1,16 @@
+// Find output names with `niri msg outputs`.
+// https://niri-wm.github.io/niri/Configuration:-Outputs
+
+output "eDP-1" {
+    // Keep a usable fallback when the external monitor is disconnected;
+    // kanshi disables this output only while the desk monitor is present.
+    mode "2560x1600@240.000"
+    scale 1.5
+}
+
+output "PNP(AOC) Q24G41ZE XLSRCHA006583" {
+    // The monitor advertises 60 Hz as preferred, so pin its native maximum.
+    mode "2560x1440@240.002"
+    scale 1.5
+    focus-at-startup
+}

@@ -46,7 +46,7 @@
       username = "han";
       hostname = "rog";
       system = "x86_64-linux";
-      paths = import ./lib/paths.nix { inherit username; };
+      paths = import ./lib/paths.nix { inherit username hostname; };
     in
     {
       # `nix fmt` formats the whole tree with nixfmt through treefmt; nixpkgs

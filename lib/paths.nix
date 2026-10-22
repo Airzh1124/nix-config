@@ -1,4 +1,4 @@
-{ username }:
+{ username, hostname }:
 
 let
   homeDirectory = "/home/${username}";
@@ -8,7 +8,10 @@ rec {
   user = rec {
     inherit homeDirectory;
     nixConfigDirectory = "${homeDirectory}/nix-config";
-    niriConfigDirectory = "${nixConfigDirectory}/home/programs/niri/config";
+    # Host-specific files that live configs (niri, kanshi) include at runtime.
+    hostDirectory = "${nixConfigDirectory}/hosts/${hostname}";
+    niriConfigDirectory = "${nixConfigDirectory}/modules/desktop/niri/config";
+    rimeCustomFile = "${nixConfigDirectory}/modules/desktop/input-method/rime-default.custom.yaml";
     ollamaModelsDirectory = "${homeDirectory}/models/ollama";
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
   };

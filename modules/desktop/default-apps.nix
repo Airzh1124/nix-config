@@ -1,16 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  home.pointerCursor = {
-    enable = true;
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 32;
-    gtk.enable = true;
-    x11.enable = true;
-  };
-
-  xdg.mimeApps = {
+  hm.xdg.mimeApps = {
     enable = true;
     # Keep desktop-wide application associations declarative, including Yazi's PDF opener.
     defaultApplications = {
@@ -55,10 +46,6 @@
   };
 
   # xdg.mimeApps manages both locations; their existing contents are declared above.
-  xdg.configFile."mimeapps.list".force = true;
-  xdg.dataFile."applications/mimeapps.list".force = true;
-
-  xresources.properties = {
-    "Xft.dpi" = 144;
-  };
+  hm.xdg.configFile."mimeapps.list".force = true;
+  hm.xdg.dataFile."applications/mimeapps.list".force = true;
 }

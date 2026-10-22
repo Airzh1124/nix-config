@@ -1,9 +1,16 @@
-{ config, pkgs, ... }:
-
 {
-  programs.niri = {
-    enable = true;
-  };
+  config,
+  lib,
+  paths,
+  pkgs,
+  ...
+}:
+
+let
+  niri = config.programs.niri.package;
+in
+{
+  programs.niri.enable = true;
 
   # Niri 官方推荐通过 niri-session / display manager 作为完整 session 启动。
   # NixOS Wiki 也提到，配合 Home Manager 时建议关掉 niri.service 默认 PATH，
@@ -18,6 +25,7 @@
 
   # Niri 不自带桌面文件管理运行时；为 Home Manager 管理的 Nautilus 启用 GVfs。
   # 该模块会一并启用 udisks2、FUSE、D-Bus 与 MTP 支持。
+  # TODO(rewrite): move into the Nautilus feature module.
   services.gvfs.enable = true;
 
   # Nautilus 启动时会连接 Tracker/LocalSearch；启用服务避免连接超时。
@@ -57,8 +65,9 @@
   # 认证 agent 本身后面可以放 Home Manager 启动，例如 Noctalia / polkit-gnome / kde polkit。
   security.polkit.enable = true;
 
+  services.libinput.enable = true;
+
   # 只放 Niri 必需或强相关的系统级 runtime。
-  # 不放 kitty / fuzzel / mako / swayidle / screenshot / Noctalia。
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     # Kept from the old base module; the backlight keys go through
@@ -66,5 +75,15 @@
     brightnessctl
   ];
 
-  services.libinput.enable = true;
+  # The KDL files stay in the repository so niri's live reload picks up edits
+  # without a rebuild. `text` is `lines`, so hosts can append their own includes.
+  hm.xdg.configFile."niri/config.kdl".text = ''
+    include "${paths.user.niriConfigDirectory}/config.kdl"
+  '';
+
+  # greetd starts this file, so the login manager does not hard-code a compositor.
+  hm.home.file.".wayland-session" = {
+    source = lib.getExe' niri "niri-session";
+    executable = true;
+  };
 }

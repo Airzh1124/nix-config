@@ -1,9 +1,17 @@
 { inputs, ... }:
 
 {
-  imports = [ inputs.vicinae.homeManagerModules.default ];
+  nix.settings = {
+    # Behind noctalia (20) but ahead of cache.nixos.org (40).
+    extra-substituters = [ "https://vicinae.cachix.org?priority=30" ];
+    extra-trusted-public-keys = [
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+    ];
+  };
 
-  programs.vicinae = {
+  hm.imports = [ inputs.vicinae.homeManagerModules.default ];
+
+  hm.programs.vicinae = {
     enable = true;
 
     settings = {

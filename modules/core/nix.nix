@@ -29,24 +29,16 @@
       min-free = 5 * 1024 * 1024 * 1024;
       max-free = 10 * 1024 * 1024 * 1024;
 
-      # Prefer caches for the core desktop components before the default NixOS
-      # cache (priority 40), then try the narrower feature-specific caches.  Set
-      # every priority explicitly because caches without one otherwise default
-      # to priority 0 and unexpectedly take precedence over cache.nixos.org.
-      # TODO(rewrite): move each cache into the feature module that needs it.
+      # Feature modules add their own caches next to the inputs they cache.
+      # Always set `?priority=`: caches without one default to priority 0 and
+      # unexpectedly take precedence over cache.nixos.org (40).
+      # TODO(rewrite): move to the llm-agents feature module.
       extra-substituters = [
-        "https://noctalia.cachix.org?priority=20"
-        "https://vicinae.cachix.org?priority=30"
         # Numtide provides pre-built llm-agents.nix packages such as Codex.
         "https://cache.numtide.com?priority=50"
-        # Use the addon's official cache instead of rebuilding sherpa-onnx locally.
-        "https://fcitx5-vinput.cachix.org?priority=60"
       ];
       extra-trusted-public-keys = [
-        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-        "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-        "fcitx5-vinput.cachix.org-1:XpX3AA6+dDIX4qJhb1QM7sbTwX6/qSlGvW8Z5NK6XdU="
       ];
     };
   };

@@ -7,6 +7,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./audio.nix
+    ./display.nix
     ./networking.nix
 
     # Core
@@ -17,12 +18,16 @@ in
     (modules + /core/user.nix)
 
     # Desktop
-    (modules + /nixos/desktop/greetd.nix)
-    (modules + /nixos/desktop/niri.nix)
-    (modules + /nixos/desktop/input.nix)
-    (modules + /nixos/desktop/keyring.nix)
-    (modules + /nixos/desktop/lockscreen.nix)
-    (modules + /nixos/desktop/stylix.nix)
+    (modules + /desktop/appearance.nix)
+    (modules + /desktop/default-apps.nix)
+    (modules + /desktop/fonts.nix)
+    (modules + /desktop/greetd.nix)
+    (modules + /desktop/input-method)
+    (modules + /desktop/keyring.nix)
+    (modules + /desktop/lock.nix)
+    (modules + /desktop/niri)
+    (modules + /desktop/noctalia)
+    (modules + /desktop/vicinae.nix)
 
     # Hardware
     (modules + /hardware/asus-rog.nix)
