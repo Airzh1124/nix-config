@@ -12,7 +12,6 @@ rec {
     hostDirectory = "${nixConfigDirectory}/hosts/${hostname}";
     niriConfigDirectory = "${nixConfigDirectory}/modules/desktop/niri/config";
     rimeCustomFile = "${nixConfigDirectory}/modules/desktop/input-method/rime-default.custom.yaml";
-    ollamaModelsDirectory = "${homeDirectory}/models/ollama";
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
   };
 

@@ -15,7 +15,7 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # CUDA-enabled packages (btop, OBS, Ollama) are not built by the main NixOS
+  # CUDA-enabled packages (btop, OBS) are not built by the main NixOS
   # Hydra cache; priority 70 keeps it behind cache.nixos.org.
   nix.settings = {
     extra-substituters = [ "https://cache.nixos-cuda.org?priority=70" ];
