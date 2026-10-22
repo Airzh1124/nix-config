@@ -1,4 +1,10 @@
-{ inputs, paths, ... }:
+{
+  inputs,
+  lib,
+  paths,
+  pkgs,
+  ...
+}:
 
 {
   nix.settings = {
@@ -31,11 +37,39 @@
 
         # Parse the TOML into an attrset so Stylix can merge its generated palette,
         # mode, font, opacity, and default wallpaper with the user-facing settings.
-        settings = builtins.fromTOML (
-          builtins.replaceStrings [ "@xdgDataHome@" ] [ config.xdg.dataHome ] (
-            builtins.readFile ./config.toml
-          )
-        );
+        settings = lib.mkMerge [
+          (builtins.fromTOML (
+            builtins.replaceStrings [ "@xdgDataHome@" ] [ config.xdg.dataHome ] (
+              builtins.readFile ./config.toml
+            )
+          ))
+
+          # Why: with the default `key_source = "secret-service"`, Noctalia
+          # looks up its encrypted-storage master key in GNOME Keyring at every
+          # start. Under the boot autologin (lock.nix) the keyring is still
+          # locked, so the lookup raises an unlock prompt behind swaylock; the
+          # PAM unlock in swaylock opens the keyring but Noctalia never closes
+          # its own pending prompt, which is left on the desktop.
+          # Upstream bug (open as of 2026-10-22):
+          # https://github.com/noctalia-dev/noctalia/issues/4704
+          #
+          # Fix: the documented keyring-free source, where Noctalia reads the
+          # key from a file and never touches the Secret Service:
+          # https://github.com/noctalia-dev/noctalia/blob/main/docs/user/configuration/secret-service.mdx#avoiding-secret-service-entirely
+          #
+          # The key is a fixed placeholder in the world-readable Nix store, not
+          # a secret: it only protects clipboard history and the calendar
+          # cache, both disabled here. It must still be 64 lowercase hex
+          # characters, or Noctalia flags encrypted storage as broken. Use a
+          # real key (or switch back to the keyring) before enabling either
+          # feature, and revisit once #4704 is fixed.
+          {
+            storage = {
+              key_source = "file";
+              key_file = "${pkgs.writeText "noctalia-placeholder-storage-key" (lib.strings.replicate 64 "0")}";
+            };
+          }
+        ];
       };
     };
 }

@@ -23,11 +23,8 @@ let
   '';
 
   # Noctalia starts alongside (general.kdl) so the desktop is ready behind the
-  # lock. At startup it asked the still-locked keyring for its storage key,
-  # leaving a stale prompt behind the lock; that key only encrypts clipboard
-  # history and calendar data (both unused here), and the leftover encrypted
-  # clipboard history was deleted on 2026-10-22, which should stop the request.
-  # If the prompt returns, start Noctalia after swaylock exits instead.
+  # lock. Its keyring lookup would leave a stale prompt here; the Noctalia
+  # module avoids it with a file-based storage key (noctalia-dev/noctalia#4704).
   lockAtLogin = pkgs.writeShellScript "lock-at-login" ''
     if [ -e ${lockMarker} ]; then
       rm ${lockMarker}
