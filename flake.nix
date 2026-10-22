@@ -32,8 +32,12 @@
     };
 
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      # Community flake that is updated promptly after each Zen release; its
+      # Home Manager module is built on Home Manager's Firefox module, so it
+      # must follow our home-manager to avoid a second copy.
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
