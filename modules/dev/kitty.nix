@@ -11,8 +11,8 @@
           env = "SHELL=${config.programs.fish.package}/bin/fish";
           confirm_os_window_close = 0;
 
-          # Yazi's file icons require a terminal font containing Nerd Font glyphs.
-          font_family = "JetBrainsMono Nerd Font";
+          # The font comes from stylix.fonts.monospace, whose Nerd Font glyphs
+          # Yazi's file icons need.
 
           # Hide the window decorations (title-bar and window borders)
           hide_window_decorations = "yes";
