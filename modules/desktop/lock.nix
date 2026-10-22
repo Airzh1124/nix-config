@@ -22,17 +22,17 @@ let
     exec ${paths.user.waylandSessionFile}
   '';
 
-  noctalia = lib.getExe config.home-manager.users.${username}.programs.noctalia.package;
-
-  # Noctalia reads its storage key from the keyring as soon as it starts. Run
-  # swaylock in the foreground first, so the keyring is already unlocked by
-  # then; starting both together left a stale keyring prompt behind the lock.
+  # Noctalia starts alongside (general.kdl) so the desktop is ready behind the
+  # lock. At startup it asked the still-locked keyring for its storage key,
+  # leaving a stale prompt behind the lock; that key only encrypts clipboard
+  # history and calendar data (both unused here), and the leftover encrypted
+  # clipboard history was deleted on 2026-10-22, which should stop the request.
+  # If the prompt returns, start Noctalia after swaylock exits instead.
   lockAtLogin = pkgs.writeShellScript "lock-at-login" ''
     if [ -e ${lockMarker} ]; then
       rm ${lockMarker}
-      ${swaylock}
+      exec ${swaylock}
     fi
-    exec ${noctalia}
   '';
 in
 {
@@ -46,7 +46,7 @@ in
   };
 
   # niri implements ext-session-lock, so the screen stays locked even if
-  # swaylock crashes. mkBefore spawns it ahead of the launcher.
+  # swaylock crashes. mkBefore spawns it ahead of the shell and launcher.
   hm.xdg.configFile."niri/config.kdl".text = lib.mkBefore ''
     spawn-at-startup "${lockAtLogin}"
   '';

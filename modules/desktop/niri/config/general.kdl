@@ -1,6 +1,6 @@
 
 
-// Noctalia is started by modules/desktop/lock.nix, after the login unlock.
+spawn-at-startup "noctalia"
 spawn-at-startup "vicinae" "server"
 
 
