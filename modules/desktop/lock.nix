@@ -22,11 +22,17 @@ let
     exec ${paths.user.waylandSessionFile}
   '';
 
+  noctalia = lib.getExe config.home-manager.users.${username}.programs.noctalia.package;
+
+  # Noctalia reads its storage key from the keyring as soon as it starts. Run
+  # swaylock in the foreground first, so the keyring is already unlocked by
+  # then; starting both together left a stale keyring prompt behind the lock.
   lockAtLogin = pkgs.writeShellScript "lock-at-login" ''
     if [ -e ${lockMarker} ]; then
       rm ${lockMarker}
-      exec ${swaylock}
+      ${swaylock}
     fi
+    exec ${noctalia}
   '';
 in
 {
@@ -40,7 +46,7 @@ in
   };
 
   # niri implements ext-session-lock, so the screen stays locked even if
-  # swaylock crashes. mkBefore spawns it ahead of the shell and launcher.
+  # swaylock crashes. mkBefore spawns it ahead of the launcher.
   hm.xdg.configFile."niri/config.kdl".text = lib.mkBefore ''
     spawn-at-startup "${lockAtLogin}"
   '';

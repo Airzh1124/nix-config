@@ -1,7 +1,6 @@
 
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "noctalia"
+// Noctalia is started by modules/desktop/lock.nix, after the login unlock.
 spawn-at-startup "vicinae" "server"
 
 
