@@ -12,6 +12,13 @@
         window-title-page = true;
         statusbar-page-percent = true;
         scroll-page-aware = true;
+        # Start in recolor (Ctrl+R) mode to match the dark desktop; Stylix sets
+        # the recolor colors. Ctrl+R still toggles back to original colors.
+        recolor = true;
+        # Keep colored text and charts recognizable by inverting only lightness,
+        # and leave embedded images (photos, figures) in their original colors.
+        recolor-keephue = true;
+        recolor-reverse-video = true;
       };
     };
     foliate.enable = true;
