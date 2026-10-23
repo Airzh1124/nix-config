@@ -1,6 +1,19 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
+let
+  # Boot menus only show on the internal panel; BootNext skips them once.
+  # 0000 is "Windows Boot Manager" in `efibootmgr`.
+  rebootWindows = pkgs.writeShellApplication {
+    name = "reboot-windows";
+    text = ''
+      sudo ${lib.getExe' pkgs.efibootmgr "efibootmgr"} --bootnext 0000
+      systemctl reboot
+    '';
+  };
+in
 {
+  hm.home.packages = [ rebootWindows ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
