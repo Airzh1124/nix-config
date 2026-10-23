@@ -1,6 +1,21 @@
 { lib, pkgs, ... }:
 
 # Zed as the fast daily editor; VS Code stays around for Jupyter notebooks.
+let
+  # Zed cannot show tinymist's Preview code lens (VS Code implements it in its
+  # client), so a keybinding runs this to open the live preview instead.
+  typstOpenPreview = pkgs.writeShellApplication {
+    name = "typst-open-preview";
+    runtimeInputs = with pkgs; [
+      gawk
+      iproute2
+      libnotify
+      procps
+      xdg-utils
+    ];
+    text = builtins.readFile ./typst-open-preview.sh;
+  };
+in
 {
   # VS Code, vim and ONLYOFFICE also claim plain text; without an entry the
   # desktop database happened to pick VS Code.
@@ -123,16 +138,48 @@
       };
 
       # Zed has no webview, so preview Typst in a browser: tinymist serves a
-      # live preview of the focused document at http://127.0.0.1:23635. It is
-      # read at server start, hence initialization_options rather than settings.
-      # tinymist re-focuses on hover/folding/semantic-token requests, not on tab
-      # switches, so hover over the new file to move the preview to it.
-      lsp.tinymist.initialization_options.preview.background.enabled = true;
+      # live preview of the focused document that follows the unsaved buffer.
+      # It is read at server start, hence initialization_options rather than
+      # settings. tinymist re-focuses on hover/folding/semantic-token requests,
+      # not on tab switches, so hover over the new file to move the preview.
+      # The default fixed port 23635 makes every tinymist after the first panic
+      # with AddrInUse, killing LSP in the other windows; each instance takes a
+      # random port instead, which the task below looks up.
+      lsp.tinymist.initialization_options.preview.background = {
+        enabled = true;
+        args = [
+          "--data-plane-host=127.0.0.1:0"
+          "--invert-colors=auto"
+        ];
+      };
 
       telemetry = {
         diagnostics = false;
         metrics = false;
       };
     };
+
+    # Pass the file through env rather than args: task args go through the
+    # shell, and paths such as "MSc(AI)" would need fish-specific quoting.
+    userTasks = [
+      {
+        label = "Typst: open preview";
+        command = lib.getExe typstOpenPreview;
+        env.TYPST_FILE = "$ZED_FILE";
+        reveal = "never";
+        hide = "on_success";
+      }
+    ];
+
+    # Same key Zed uses for Markdown and SVG previews.
+    userKeymaps = [
+      {
+        context = "Editor && extension == typ";
+        bindings."ctrl-shift-v" = [
+          "task::Spawn"
+          { task_name = "Typst: open preview"; }
+        ];
+      }
+    ];
   };
 }
