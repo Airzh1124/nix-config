@@ -54,7 +54,7 @@
     x11.enable = true;
   };
 
-  # XWayland apps (e.g. WeChat) read their scale from Xresources.
+  # XWayland apps read their scale from Xresources.
   hm.xresources.properties = {
     "Xft.dpi" = 144;
   };
