@@ -62,6 +62,10 @@ in
 
       autosave = "on_focus_change";
 
+      # Wrap long lines at the window edge (Zed defaults to "none"). This is
+      # display-only: no newlines are written into the file.
+      soft_wrap = "editor_width";
+
       # File-centric panels on the left, AI on the right. Zed 1.24 defaults are
       # the mirror image; the agent's thread list moves with its panel.
       project_panel = {
