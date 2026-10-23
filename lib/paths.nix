@@ -15,6 +15,8 @@ rec {
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
     # The compositor module provides this executable; greetd starts it.
     waylandSessionFile = "${homeDirectory}/.wayland-session";
+    # Same directory as niri's screenshot-path (general.kdl), so originals and annotated copies sit together.
+    screenshotDirectory = "${homeDirectory}/Pictures/Screenshots";
   };
 
   # These Nix paths are evaluated from the repository and copied to the store as needed.

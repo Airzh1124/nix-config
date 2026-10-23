@@ -254,6 +254,8 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    // niri copies every screenshot to the clipboard; open the latest one in Satty to annotate.
+    Mod+Shift+A hotkey-overlay-title="Annotate Last Screenshot" { spawn-sh "wl-paste -t image/png | satty -f -"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

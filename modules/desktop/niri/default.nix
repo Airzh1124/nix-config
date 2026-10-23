@@ -70,6 +70,24 @@ in
     include "${paths.user.niriConfigDirectory}/config.kdl"
   '';
 
+  # niri's built-in screenshot has no annotation, so Satty edits the capture it
+  # left on the clipboard (see the Mod+Shift+A bind in binds.kdl).
+  hm.programs.satty = {
+    enable = true;
+    settings.general = {
+      # Boxes are the most common annotation; other tools stay one click away.
+      initial-tool = "rectangle";
+      # wl-copy keeps serving the image after Satty exits, unlike GTK's clipboard.
+      copy-command = "wl-copy";
+      early-exit = true;
+      # Annotated copies sit next to niri's originals, told apart by the prefix.
+      output-filename = "${paths.user.screenshotDirectory}/Annotated %Y-%m-%d %H-%M-%S.png";
+    };
+    # Satty draws text with only the fonts named here and ignores fontconfig
+    # fallback, so Chinese needs an explicit CJK fallback (fonts.nix installs it).
+    settings.font.fallback = [ "Noto Sans CJK SC" ];
+  };
+
   # greetd starts this file (paths.user.waylandSessionFile), so the login
   # manager does not hard-code a compositor.
   hm.home.file.".wayland-session" = {
