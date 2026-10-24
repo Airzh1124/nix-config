@@ -4,17 +4,11 @@
 
 input {
     keyboard {
+        // Setting anything here stops niri from reading locale1, so spell out
+        // the layout. Caps Lock becomes Ctrl on every keyboard.
         xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-
-            // If this section is empty, niri will fetch xkb settings
-            // from org.freedesktop.locale1. You can control these using
-            // localectl set-x11-keymap.
+            layout "us"
+            options "ctrl:nocaps"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
