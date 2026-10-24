@@ -1,7 +1,9 @@
 // Find output names with `niri msg outputs`.
 // https://niri-wm.github.io/niri/Configuration:-Outputs
 
-output "eDP-1" {
+// Match by make/model: connector names (eDP-1 vs eDP-2, DP-3 vs DP-2) swap
+// between boots depending on whether i915 or nvidia-drm initializes first.
+output "BOE NE160QDM-NZC Unknown" {
     // niri turns this panel off while the lid is closed and the desk
     // monitor is connected.
     mode "2560x1600@240.000"
