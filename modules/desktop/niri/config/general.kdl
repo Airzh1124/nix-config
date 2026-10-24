@@ -11,8 +11,10 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+    // Open it with Mod+Shift+/ instead of at every login.
     skip-at-startup
+    // List only actions that have a key, not niri's unbound defaults.
+    hide-not-bound
 }
 
 debug {
