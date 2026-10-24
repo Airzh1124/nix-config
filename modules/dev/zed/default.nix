@@ -55,6 +55,9 @@ in
       # size, which kitty shares, so override Zed alone instead.
       buffer_font_size = lib.mkForce 18;
 
+      # Zed ignores fontconfig fallbacks; use SC glyphs like kitty.
+      buffer_font_fallbacks = [ "Noto Sans Mono CJK SC" ];
+
       # Let niri own the window frame: Zed then drops its window controls and
       # rounded corners. niri only offers server-side decorations while its
       # prefer-no-csd option is on; otherwise Zed falls back to drawing its own.
@@ -103,6 +106,7 @@ in
 
       # Commands run in Zed's terminal (git commit, etc.) edit in Zed itself.
       terminal.env.EDITOR = "${lib.getExe pkgs.zed-editor} --wait";
+      terminal.font_fallbacks = [ "Noto Sans Mono CJK SC" ];
 
       # Format like `nix fmt` (nixfmt-tree runs plain nixfmt, no --strict);
       # nixd cannot pass formatter arguments, hence the external command. "-"
