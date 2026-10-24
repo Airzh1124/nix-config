@@ -25,26 +25,35 @@ save_to_file = false
 enabled = false
 
 [shell.session]
+# Native lock screen is off, so lock and suspend are commands routed through
+# swayidle (lock.nix): lock-session fires its lock event, and before-sleep
+# locks ahead of suspend.
 [[shell.session.actions]]
-# Keep this visible while Noctalia's native lock screen is disabled.
 action = "command"
-label = "Lock & Suspend"
-glyph = "bedtime"
-command = "swaylock -f && systemctl suspend"
+label = "Lock"
+glyph = "lock"
+command = "loginctl lock-session"
 variant = "primary"
 shortcut = "1"
+
+[[shell.session.actions]]
+action = "command"
+label = "Suspend"
+glyph = "bedtime"
+command = "systemctl suspend"
+shortcut = "2"
 
 [[shell.session.actions]]
 action = "reboot"
 variant = "destructive"
 countdown_seconds = 5
-shortcut = "2"
+shortcut = "3"
 
 [[shell.session.actions]]
 action = "shutdown"
 variant = "destructive"
 countdown_seconds = 5
-shortcut = "3"
+shortcut = "4"
 
 [bar.default]
 auto_hide = true
