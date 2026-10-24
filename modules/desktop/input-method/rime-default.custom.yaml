@@ -21,7 +21,10 @@ patch:
     ascii_composer:
       good_old_caps_lock: true
       switch_key:
-        Caps_Lock: noop
+        # Never noop: Caps Lock would then feed capitals into the composition
+        # while Backspace bypasses it (rime/librime#1117). niri remaps Caps to
+        # Ctrl, so this only matters if a real Caps Lock comes back.
+        Caps_Lock: commit_code
         Shift_L: commit_code
         Shift_R: noop
         Control_L: noop
