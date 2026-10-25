@@ -18,7 +18,9 @@
           hide_window_decorations = "yes";
         };
         keybindings = {
-          "ctrl+shift+enter" = "launch --cwd=current";
+          # oldest, not current: background helpers (e.g. wl-copy) can be the
+          # newest foreground process and report a cwd of /.
+          "ctrl+shift+enter" = "launch --cwd=oldest";
         };
       };
     };
