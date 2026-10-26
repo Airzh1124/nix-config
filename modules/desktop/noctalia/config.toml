@@ -87,6 +87,17 @@ type = "notification"
 [[control_center.shortcuts]]
 type = "cleboost/hotspot:cc-toggle"
 
+[notification]
+filter_order = ["niri-screenshot"]
+
+# niri already copies screenshots to the clipboard; drop its confirmation toast.
+[notification.filter.niri-screenshot]
+enabled = true
+match_content = "^Screenshot captured"
+show_toast = false
+save_history = false
+play_sound = false
+
 [osd.kinds]
 # Fcitx5 already indicates the active input method; avoid a duplicate popup.
 keyboard_layout = false
