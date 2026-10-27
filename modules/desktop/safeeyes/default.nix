@@ -10,6 +10,19 @@ let
     # Smart Pause needs pywayland for ext-idle-notify on niri; nixpkgs leaves it optional.
     dependencies = old.dependencies ++ old.optional-dependencies.wayland;
 
+    # pywayland 0.4.19 flattened protocol modules; fixed upstream in 3.5.1 (slgobinath/safeeyes#906).
+    postPatch =
+      (old.postPatch or "")
+      + lib.optionalString (lib.versionOlder old.version "3.5.1") ''
+        substituteInPlace safeeyes/plugins/smartpause/ext_idle_notify.py \
+          --replace-fail "pywayland.protocol.wayland.wl_seat" "pywayland.protocol.wayland"
+      ''
+      # GetLayout must root its reply at the requested id, or Noctalia caches a submenu as the root menu.
+      + ''
+        substituteInPlace safeeyes/plugins/trayicon/plugin.py \
+          --replace-fail '(0, {"children-display"' '(parent_id, {"children-display"'
+      '';
+
     # The audible alert plays via pw-play; the upstream wrapper only ships aplay.
     preFixup = (old.preFixup or "") + ''
       makeWrapperArgs+=(

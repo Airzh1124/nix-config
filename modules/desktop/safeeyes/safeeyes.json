@@ -50,9 +50,10 @@
             "id": "audiblealert",
             "settings": {
                 "post_break_alert": true,
-                "pre_break_alert": true
+                "pre_break_alert": true,
+                "volume": 100
             },
-            "version": "0.0.3"
+            "version": "0.0.4"
         },
         {
             "enabled": true,
@@ -106,7 +107,7 @@
             "settings": {
                 "statistics_reset_cron": "0 0 * * *"
             },
-            "version": "0.0.2"
+            "version": "0.0.3"
         },
         {
             "enabled": true,
