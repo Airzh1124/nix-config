@@ -12,6 +12,7 @@ rec {
     hostDirectory = "${nixConfigDirectory}/hosts/${hostname}";
     niriConfigDirectory = "${nixConfigDirectory}/modules/desktop/niri/config";
     rimeCustomFile = "${nixConfigDirectory}/modules/desktop/input-method/rime-default.custom.yaml";
+    safeeyesConfigFile = "${nixConfigDirectory}/modules/desktop/safeeyes/safeeyes.json";
     mihomoConfigFile = "${homeDirectory}/.config/mihomo/config.yaml";
     # The compositor module provides this executable; greetd starts it.
     waylandSessionFile = "${homeDirectory}/.wayland-session";
