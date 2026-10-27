@@ -1,0 +1,44 @@
+/* Break screen styled after Noctalia; @baseXX colors are defined by default.nix from Stylix. */
+
+.break_screen_root {
+  background: alpha(@base00, 0.92);
+}
+
+.lbl_message {
+  color: @base05;
+}
+
+.lbl_count,
+.lbl_widget {
+  color: @base04;
+}
+
+.btn_skip,
+.btn_postpone {
+  color: @base05;
+  background: @base01;
+  border-color: @base03;
+  border-width: 1px;
+  border-radius: 12px;
+  font-size: 13pt;
+  padding: 14px 36px;
+  min-width: 120px;
+}
+
+.btn_skip:hover,
+.btn_postpone:hover {
+  color: @base00;
+  background: @base0C;
+  border-color: @base0C;
+}
+
+.btn_skip:disabled,
+.btn_postpone:disabled {
+  color: @base03;
+  background: transparent;
+  border-color: @base02;
+}
+
+.toolbar {
+  background: @base01;
+}

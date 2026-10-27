@@ -115,7 +115,7 @@
             "version": "0.0.1"
         },
         {
-            "enabled": true,
+            "enabled": false,
             "id": "limitconsecutiveskipping",
             "settings": {
                 "number_of_allowed_skips_in_a_row": 2
