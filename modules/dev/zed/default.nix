@@ -161,6 +161,15 @@ in
         ];
       };
 
+      # Multi-file notes (main.typ including lecNN.typ) need main.typ as the
+      # entry, or labels from other chapters are unresolved. The project's
+      # tinymist.lock (`tinymist compile --save-lock main.typ`) records it;
+      # files without a lock still compile on their own. Set it in settings
+      # too: tinymist re-pulls its config later, and Zed answers with
+      # settings alone, which would reset this to singleFile.
+      lsp.tinymist.initialization_options.projectResolution = "lockDatabase";
+      lsp.tinymist.settings.projectResolution = "lockDatabase";
+
       telemetry = {
         diagnostics = false;
         metrics = false;
