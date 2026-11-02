@@ -6,8 +6,12 @@ let
 in
 {
   # NetworkManager's shared Wi-Fi profile provides DHCP/DNS for hotspot clients.
+  # TCP 8000: course notes served to the iPad (python3 -m http.server on 10.42.0.1).
   networking.firewall.interfaces.${hotspotInterface} = {
-    allowedTCPPorts = [ 53 ];
+    allowedTCPPorts = [
+      53
+      8000
+    ];
     allowedUDPPorts = [
       53
       67
