@@ -29,15 +29,13 @@
     };
   };
 
-  # Chrome and ONLYOFFICE also claim PDF and EPUB; Office formats need no entry
-  # because ONLYOFFICE is their only handler.
+  # Chrome also claims PDF and EPUB.
   hm.xdg.mimeApps.defaultApplications = {
     "application/pdf" = [ "org.pwmt.zathura.desktop" ];
     "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
   };
 
   hm.home.packages = with pkgs; [
-    onlyoffice-desktopeditors
     poppler-utils
     # Typst documents use this system-wide CLI rather than per-project devShells,
     # so it is updated together with Zed's tinymist (see modules/dev/zed.nix).

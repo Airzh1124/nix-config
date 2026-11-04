@@ -17,7 +17,7 @@ let
   };
 in
 {
-  # VS Code, vim and ONLYOFFICE also claim plain text; without an entry the
+  # VS Code and vim also claim plain text; without an entry the
   # desktop database happened to pick VS Code.
   hm.xdg.mimeApps.defaultApplications."text/plain" = [ "dev.zed.Zed.desktop" ];
 
