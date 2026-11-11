@@ -214,6 +214,26 @@
         "type": "gitlab"
       }
     },
+    "hkuvpn": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794412039,
+        "narHash": "sha256-c1TW7snmWKajUBFeu+7OGuMT+/8kaRW5pJT/ls+zORM=",
+        "owner": "Airzh1124",
+        "repo": "hkuvpn-nix",
+        "rev": "27faa079b6d6c1c32642bec1191c7512468aff7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Airzh1124",
+        "repo": "hkuvpn-nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -419,6 +439,7 @@
     "root": {
       "inputs": {
         "fcitx5-vinput": "fcitx5-vinput",
+        "hkuvpn": "hkuvpn",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
         "nixpkgs": "nixpkgs_3",

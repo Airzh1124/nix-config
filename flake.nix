@@ -13,6 +13,11 @@
       url = "github:xifan2333/fcitx5-vinput";
     };
 
+    hkuvpn = {
+      url = "github:Airzh1124/hkuvpn-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Keep AI coding tools on the upstream-tested package set so Codex can
     # track llm-agents.nix updates independently from the main system input.
     llm-agents.url = "github:numtide/llm-agents.nix";
