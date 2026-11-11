@@ -18,6 +18,15 @@ in
     ];
   };
 
+  # Hotspot clients bypass mihomo (tun.exclude-interface), but mihomo's
+  # dns-hijack still answers every DNS query this host sends, so dnsmasq would
+  # relay fake-ip (198.18.x.x) answers the clients can't reach. Hand clients a
+  # public resolver over DHCP instead; their queries are forwarded straight out.
+  # NetworkManager only passes this --conf-dir to dnsmasq when it exists.
+  environment.etc."NetworkManager/dnsmasq-shared.d/hotspot-dns.conf".text = ''
+    dhcp-option=option:dns-server,223.5.5.5,119.29.29.29
+  '';
+
   # Allow the wired connection to be forwarded to the Wi-Fi hotspot.
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
