@@ -8,6 +8,7 @@
 - My interactive shell is fish. Commands meant for me to paste must be valid
   fish (`set -x VAR val`, `(cmd)` not `$(cmd)`); scripts you run yourself can
   use bash.
+- New projects go in `~/projects/<name>` unless I say otherwise.
 
 ## Development environments
 
@@ -18,11 +19,13 @@ from a flake devShell, not from system packages or imperative installs.
   pointing a project at one of them (`.envrc`: `use flake ~/nix-dev/<name>`)
   over creating a new one. A project-specific environment goes in the
   project's own `flake.nix`.
-- Pin nixpkgs to the revision the system runs unless a package version
-  requires otherwise, so packages are reused from the store instead of
-  downloaded again: `github:NixOS/nixpkgs/<rev>` with
-  `<rev>` = `nixos-version --revision`. Avoid branch URLs like
-  `nixos-unstable`, which lock to a new revision every time.
+- When creating a flake, write the nixpkgs input as
+  `github:NixOS/nixpkgs/nixos-unstable` (the branch the system follows) but
+  lock it to the revision the system runs, so packages are reused from the
+  store instead of downloaded again:
+  `nix flake lock --override-input nixpkgs github:NixOS/nixpkgs/$(nixos-version --revision)`.
+  A plain first lock would pick the branch's latest commit instead. The lock
+  is then left alone; run `nix flake update` only when I ask.
 - When a specific version is required:
   1. use a versioned attribute from the pinned nixpkgs if one exists
      (`python312`, `nodejs_20`, `gcc13`, ...);
