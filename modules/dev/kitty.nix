@@ -21,6 +21,8 @@
           # oldest, not current: background helpers (e.g. wl-copy) can be the
           # newest foreground process and report a cwd of /.
           "ctrl+shift+enter" = "launch --cwd=oldest";
+          # Separate OS window (a new niri column) in the same cwd.
+          "ctrl+shift+n" = "launch --type=os-window --cwd=oldest";
         };
       };
     };
