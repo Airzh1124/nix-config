@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Plain utilities with no related feature module, grouped by purpose.
@@ -33,6 +33,8 @@
     # Provide bwrap for running commands in isolated user namespaces.
     bubblewrap
     gnupg
+    # CUDA backend only when the NVIDIA driver is loaded; OpenCL otherwise.
+    (hashcat.override { cudaSupport = config.hardware.nvidia.enabled; })
 
     # Language runtimes for ad-hoc scripts; projects use devShells.
     nodejs
