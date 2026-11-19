@@ -9,6 +9,9 @@
   fish (`set -x VAR val`, `(cmd)` not `$(cmd)`); scripts you run yourself can
   use bash.
 - New projects go in `~/projects/<name>` unless I say otherwise.
+- To check what a program or module supports, go cheapest first: `--help` or
+  `man` filtered with grep, then `rg` in its source and read only the matching
+  region, then web docs. Don't read whole files to find one option.
 
 ## Development environments
 
