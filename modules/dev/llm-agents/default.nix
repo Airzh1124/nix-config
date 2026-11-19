@@ -54,6 +54,8 @@ in
 
       home.packages = [
         llmAgents.pi
+        # Google Antigravity CLI; the binary is `agy`.
+        llmAgents.antigravity-cli
         # Used by the Claude Code status line script.
         pkgs.jq
       ];
