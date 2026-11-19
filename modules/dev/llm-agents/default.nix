@@ -32,6 +32,9 @@ in
         context = commonPrompt;
       };
 
+      # Expands in place, so history keeps the full `claude` command.
+      programs.fish.shellAbbrs.c = "claude";
+
       # settings.json stays mutable and points its statusLine command at this path. Link the
       # script out of the store so edits in the repo take effect without a rebuild.
       home.file.".claude/statusline.sh".source = config.lib.file.mkOutOfStoreSymlink (
