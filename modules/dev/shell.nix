@@ -15,6 +15,29 @@
     '';
     # Replaces the preset Alt-V editor binding; Alt-E still opens $EDITOR.
     binds."alt-v".command = "fish_clipboard_paste_clean";
+    # `mvdl [-c] [N]`: move (or copy) the N newest arrivals in ~/Downloads here; ctime = arrival time.
+    functions.mvdl = ''
+      argparse c/copy -- $argv; or return
+      set -l n 1
+      if set -q argv[1]
+          if not string match -qr '^[1-9][0-9]*$' -- $argv[1]
+              echo "mvdl: count must be a positive integer" >&2
+              return 1
+          end
+          set n $argv[1]
+      end
+      set -l files (find ~/Downloads -mindepth 1 -maxdepth 1 ! -name '.*' ! -name '*.part' ! -name '*.crdownload' -printf '%C@\t%p\0' \
+          | sort -z -rn | head -z -n $n | cut -z -f2- | string split0)
+      if not set -q files[1]
+          echo "mvdl: ~/Downloads is empty" >&2
+          return 1
+      end
+      if set -q _flag_copy
+          cp -riv -- $files .
+      else
+          mv -iv -- $files .
+      end
+    '';
   };
 
   # Both modules hook into Fish by default (`z`/`zi`; Ctrl-T, Ctrl-R, Alt-C).
