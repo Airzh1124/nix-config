@@ -22,9 +22,11 @@ in
   # dns-hijack still answers every DNS query this host sends, so dnsmasq would
   # relay fake-ip (198.18.x.x) answers the clients can't reach. Hand clients a
   # public resolver over DHCP instead; their queries are forwarded straight out.
+  # Cloudflare first, Google as fallback: both have Hong Kong nodes, and two
+  # providers keep one provider's outage from taking out both resolvers.
   # NetworkManager only passes this --conf-dir to dnsmasq when it exists.
   environment.etc."NetworkManager/dnsmasq-shared.d/hotspot-dns.conf".text = ''
-    dhcp-option=option:dns-server,223.5.5.5,119.29.29.29
+    dhcp-option=option:dns-server,1.1.1.1,8.8.8.8
   '';
 
   # Allow the wired connection to be forwarded to the Wi-Fi hotspot.
